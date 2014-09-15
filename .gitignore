@@ -6,3 +6,5 @@
 *.pidb
 *.resources
 test-results/
+
+MSTestAllureAdapter/bin

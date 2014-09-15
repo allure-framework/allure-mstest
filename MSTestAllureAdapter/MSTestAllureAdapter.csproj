@@ -28,6 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -41,5 +42,11 @@
   <ItemGroup>
     <None Include="vstst\sample.trx" />
     <None Include="vstst\vstst.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\allure-csharp-commons\AllureCSharpCommons\AllureCSharpCommons.csproj">
+      <Project>{0C358997-150B-4752-8B69-8B174167D730}</Project>
+      <Name>AllureCSharpCommons</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
