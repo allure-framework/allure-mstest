@@ -32,16 +32,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="vstst\vstst.cs" />
-    <Compile Include="AllureEventListener.cs" />
+    <Compile Include="TRXParser\vstst\vstst.cs" />
+    <Compile Include="TRXParser\TRXParser.cs" />
+    <Compile Include="AllureAdapter.cs" />
+    <Compile Include="MSTestResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="vstst\" />
+    <Folder Include="TRXParser\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="vstst\sample.trx" />
-    <None Include="vstst\vstst.xsd" />
+    <None Include="TRXParser\vstst\sample.trx" />
+    <None Include="TRXParser\vstst\vstst.xsd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\allure-csharp-commons\AllureCSharpCommons\AllureCSharpCommons.csproj">
