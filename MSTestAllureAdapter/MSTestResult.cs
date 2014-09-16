@@ -1,19 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MSTestAllureAdapter
 {
-	public enum TestOutcome { Failure, Success }
+    /// <summary>
+    /// Test outcome.
+    /// From the TestOutcome type in the vstst.xsd
+    /// </summary>
+    public enum TestOutcome { 
+        Error,
+        Failed,
+        Timeout,
+        Aborted,
+        Inconclusive,
+        PassedButRunAborted,
+        NotRunnable,
+        NotExecuted,
+        Disconnected,
+        Warning,
+        Passed,
+        Completed,
+        InProgress,
+        Pending
+    }
 
 	public class MSTestResult
 	{
-		public MSTestResult(string testName, TestOutcome outcome, params string[] suiteNames) 
+        public MSTestResult(string name, TestOutcome outcome, string[] suits) 
 		{ 
-			Name = testName;
+            Name = name;
 
 			// strings are immutable to no deep copy is needed.
-			string[] suiteNamesCopy = new string[suiteNames.Length];
-			Array.Copy(suiteNames, suiteNamesCopy, suiteNames.Length);
+            string[] suiteNamesCopy = new string[suits.Length];
+            Array.Copy(suits, suiteNamesCopy, suits.Length);
 
 			Suites = suiteNamesCopy;
 
