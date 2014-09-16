@@ -86,7 +86,7 @@ namespace MSTestAllureAdapter.Tests
 
             if (notExpected.Count > 0)
                 {
-                    message += "The following items were not expected to be found: ";
+                    message += "The following items were not expected: ";
                     message += String.Join(", ", notExpected);
                     message += Environment.NewLine;
                 }

@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace MSTestAllureAdapter
 {
@@ -60,13 +61,12 @@ namespace MSTestAllureAdapter
                                   let description = unitTest.GetSafeValue(ns + "Description")
                                   let testClass = unitTest.GetSafeAttributeValue(ns + "TestMethod", "className")
                                   let testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name")
-                                  let categories = from testCategory in unitTest.Descendants(ns + "TestCategory")
-                                          select testCategory.GetSafeAttributeValue(ns + "TestCategoryItem", "TestCategory")
+                                  let categories = from testCategory in unitTest.Descendants(ns + "TestCategoryItem") select testCategory.GetSafeAttributeValue("TestCategory")
                                   join unitTestResult in unitTestResults
                 on id equals unitTestResult.Attribute("executionId").Value
                                   let outcome = unitTestResult.Attribute("outcome").Value
                 select new MSTestResult(testName, (TestOutcome)Enum.Parse(typeof(TestOutcome), outcome), categories.ToArray<string>());
-            //result = result.ToList();
+
             return result;
         }
 	}
@@ -92,6 +92,18 @@ namespace MSTestAllureAdapter
             string result = String.Empty;
 
             element = element.Element(name);
+
+            if (element != null && element.Attribute(attributeName) != null)
+            {
+                result = element.Attribute(attributeName).Value;
+            }
+
+            return result;
+        }
+
+        public static string GetSafeAttributeValue(this XElement element, XName attributeName)
+        {
+            string result = String.Empty;
 
             if (element != null && element.Attribute(attributeName) != null)
             {
