@@ -27,6 +27,6 @@ Global
 		{9CED0C38-BCEB-4BFC-9294-38455758A461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MSTestAllureAdapter\MSTestAllureAdapter.csproj
+		StartupItem = MSTestAllureAdapter.Tests\MSTestAllureAdapter.Tests.csproj
 	EndGlobalSection
 EndGlobal
