@@ -29,6 +29,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -42,7 +44,6 @@
     <Folder Include="TRXParser\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TRXParser\vstst\sample.trx" />
     <None Include="TRXParser\vstst\vstst.xsd" />
   </ItemGroup>
   <ItemGroup>
