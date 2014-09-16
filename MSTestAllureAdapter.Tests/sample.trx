@@ -16,14 +16,24 @@
   </Results>
   <TestDefinitions>
     <UnitTest name="TestMethod1" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="07615eb7-235a-11a1-4f45-a06cb4d2655e">
+      <TestCategory>
+  		<TestCategoryItem TestCategory="Category1" />
+      </TestCategory>
       <Execution id="abbebf2e-ff17-4f6c-a0b3-23ec9cd1161f" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod1" />
     </UnitTest>
     <UnitTest name="TestMethod2" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="310ffa11-b40e-2240-f06c-82c2271155b4">
+	  <TestCategory>
+  		<TestCategoryItem TestCategory="Category1" />
+  		<TestCategoryItem TestCategory="Category2" />
+      </TestCategory>
       <Execution id="2e2b23ee-17c8-4324-9bd8-26004ef42dfd" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod2" />
     </UnitTest>
     <UnitTest name="TestMethod3" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="12fb41d8-85fc-cbfb-1138-28f3c6818cfe">
+	  <TestCategory>
+  		<TestCategoryItem TestCategory="Category2" />
+      </TestCategory>
       <Execution id="d62798a6-0f20-47ec-a9c0-25ef13732748" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod3" />
     </UnitTest>
