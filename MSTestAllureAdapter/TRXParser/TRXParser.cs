@@ -44,7 +44,7 @@ namespace MSTestAllureAdapter
        
 
 
-        public IEnumerable<MSTestResult> Parse(string filePath)
+        public IEnumerable<MSTestResult> GetTestResults(string filePath)
         {
             XDocument doc = XDocument.Load(filePath);
             XNamespace ns = mTrxNamespace;
