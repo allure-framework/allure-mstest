@@ -26,7 +26,7 @@ namespace MSTestAllureAdapter.Tests
         {
             TRXParser parser = new TRXParser();
 
-            mTestResults = parser.Parse("sample.trx");
+            mTestResults = parser.GetTestResults("sample.trx");
         }
 
 
