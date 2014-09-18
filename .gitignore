@@ -8,3 +8,7 @@
 test-results/
 
 MSTestAllureAdapter/bin
+MSTestAllureAdapter.Console/bin
+MSTestAllureAdapter.Console/obj
+MSTestAllureAdapter.Tests/bin
+MSTestAllureAdapter.Tests/obj
