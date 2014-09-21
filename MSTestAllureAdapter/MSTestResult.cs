@@ -9,6 +9,7 @@ namespace MSTestAllureAdapter
     /// From the TestOutcome type in the vstst.xsd
     /// </summary>
     public enum TestOutcome { 
+        Unknown,
         Error,
         Failed,
         Timeout,
@@ -27,7 +28,7 @@ namespace MSTestAllureAdapter
 
 	public class MSTestResult
 	{
-        public MSTestResult(string name, TestOutcome outcome, string[] suits) 
+        public MSTestResult(string name, TestOutcome outcome, DateTime start, DateTime end, string[] suits) 
 		{ 
             Name = name;
 
@@ -38,17 +39,23 @@ namespace MSTestAllureAdapter
 			Suites = suiteNamesCopy;
 
 			Outcome = outcome;
+            Start = start;
+            End = end;
 		}
 
 
-		public MSTestResult (string testName, TestOutcome outcome, string suiteName)
-			: this(testName, outcome, new string[] { suiteName }) { }
+        public MSTestResult (string testName, TestOutcome outcome, DateTime start, DateTime end, string suiteName)
+            : this(testName, outcome, start, end, new string[] { suiteName }) { }
 
 		public string Name { get; private set; }
 
 		public IEnumerable<string> Suites { get; private set; }
 
 		public TestOutcome Outcome { get; private set; }
+
+        public DateTime Start { get; private set; }
+
+        public DateTime End { get; private set; }
 	}
 }
 

@@ -12,7 +12,7 @@ namespace MSTestAllureAdapter
     /// TRX parser.
     /// Based on the trx2html parser code: http://trx2html.codeplex.com/ 
     /// </summary>
-	public class TRXParser
+    public class TRXParser
     {
         private readonly XNamespace mTrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
 
@@ -56,20 +56,26 @@ namespace MSTestAllureAdapter
 
             IEnumerable<XElement> unitTestResults = doc.Descendants(ns + "UnitTestResult");
 
-            IEnumerable<MSTestResult> result = from unitTest in unitTests
-                                  let id = unitTest.Element(ns + "Execution").Attribute("id").Value
-                                  let description = unitTest.GetSafeValue(ns + "Description")
-                                  let testClass = unitTest.GetSafeAttributeValue(ns + "TestMethod", "className")
-                                  let testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name")
-                                  let categories = from testCategory in unitTest.Descendants(ns + "TestCategoryItem") select testCategory.GetSafeAttributeValue("TestCategory")
-                                  join unitTestResult in unitTestResults
-                on id equals unitTestResult.Attribute("executionId").Value
-                                  let outcome = unitTestResult.Attribute("outcome").Value
-                select new MSTestResult(testName, (TestOutcome)Enum.Parse(typeof(TestOutcome), outcome), categories.ToArray<string>());
+            IEnumerable<MSTestResult> result = 
+                from unitTest in unitTests
+                            let id = unitTest.Element(ns + "Execution").Attribute("id").Value
+                            let description = unitTest.GetSafeValue(ns + "Description")
+                            let testClass = unitTest.GetSafeAttributeValue(ns + "TestMethod", "className")
+                            let testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name")
+                            let categories = from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
+                                                                                     select testCategory.GetSafeAttributeValue("TestCategory")
+                            join unitTestResult in unitTestResults
+                            on id equals unitTestResult.Attribute("executionId").Value
+                            let testResultData = new {
+                                                        Outcome = unitTestResult.Attribute("outcome").Value, 
+                                                        Start = DateTime.Parse(unitTestResult.Attribute("startTime").Value), 
+                                                        End = DateTime.Parse(unitTestResult.Attribute("endTime").Value)
+                                                     }
+                            select new MSTestResult(testName, (TestOutcome)Enum.Parse(typeof(TestOutcome), testResultData.Outcome), testResultData.Start, testResultData.End, categories.ToArray<string>());
 
             return result;
         }
-	}
+    }
 
     internal static class XElementExtensions
     {

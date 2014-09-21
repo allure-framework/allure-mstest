@@ -26,21 +26,27 @@ namespace MSTestAllureAdapter
                 {
                     string suitUid = Guid.NewGuid().ToString();
                     string suitName = testResultBySuit.Key;
-                    TestSuitStarted(suitUid, suitName);
+                    ICollection<MSTestResult> tests = testResultBySuit.Value;
+                    
+                    MSTestResult first = tests.Aggregate((a, b) => a.Start < b.Start ? a : b);
+                    MSTestResult last = tests.Aggregate((a, b) => a.End > b.End ? a : b);
+
+
+                    TestSuitStarted(suitUid, suitName, first.Start);
 
                     foreach (MSTestResult testResult in testResultBySuit.Value)
                     {
-                        TestStarted(suitUid, testResult.Name);
+                        TestStarted(suitUid, testResult.Name, testResult.Start);
                             
                         switch (testResult.Outcome)
                         {
                             case TestOutcome.Completed:
                             case TestOutcome.Passed:
-                                TestFinished();
+                                        TestFinished(testResult.End);
                                 break;
 
                             case TestOutcome.Failed:
-                                TestFailed();
+                                        TestFailed(testResult.End);
                                 break;
 
                             default:
@@ -48,7 +54,7 @@ namespace MSTestAllureAdapter
                         }
                     }
 
-                    TestSuitFinished(suitUid);
+                    TestSuitFinished(suitUid, last.End);
                 }
             }
             finally
@@ -80,29 +86,29 @@ namespace MSTestAllureAdapter
             return testsMap;
         }
 
-        private void TestStarted(string suitId, string name)
+        protected virtual void TestStarted(string suitId, string name, DateTime started)
         {
-            Allure.Lifecycle.Fire(new TestCaseStartedEvent(suitId, name));
+            Allure.Lifecycle.Fire(new TestCaseStartedWithTimeEvent(suitId, name, started));
         }
 
-        private void TestFinished()
+        protected virtual void TestFinished(DateTime finished)
         {
-            Allure.Lifecycle.Fire(new TestCaseFinishedEvent());
+            Allure.Lifecycle.Fire(new TestCaseFinishedWithTimeEvent(finished));
         }
 
-        private void TestFailed()
+        protected virtual void TestFailed(DateTime finished)
         {
-            Allure.Lifecycle.Fire(new TestCaseFailureEvent());
+            Allure.Lifecycle.Fire(new TestCaseFailureWithTimeEvent(finished));
         }
 
-        private void TestSuitStarted(string uid, string name)
+        protected virtual void TestSuitStarted(string uid, string name, DateTime started)
         {
-            Allure.Lifecycle.Fire(new TestSuiteStartedEvent(uid, name));
+            Allure.Lifecycle.Fire(new TestSuiteStartedWithTimeEvent(uid, name, started));
         }
 
-        private void TestSuitFinished(string uid)
+        protected virtual void TestSuitFinished(string uid, DateTime finished)
         {
-            Allure.Lifecycle.Fire(new TestSuiteFinishedEvent(uid));
+            Allure.Lifecycle.Fire(new TestSuiteFinishedWithTimeEvent(uid, finished));
         }
 
     }
