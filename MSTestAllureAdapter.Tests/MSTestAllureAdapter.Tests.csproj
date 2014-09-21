@@ -48,5 +48,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="results-example-mstest.trx" />
   </ItemGroup>
 </Project>

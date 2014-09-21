@@ -45,5 +45,8 @@
       <Link>sample.trx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\MSTestAllureAdapter.Tests\results-example-mstest.trx">
+      <Link>results-example-mstest.trx</Link>
+    </None>
   </ItemGroup>
 </Project>
