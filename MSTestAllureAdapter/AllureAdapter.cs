@@ -18,27 +18,9 @@ namespace MSTestAllureAdapter
 
             try
             {
-
                 IEnumerable<MSTestResult> testResults = mTrxParser.GetTestResults(trxFile);
 
-                IDictionary<string, ICollection<MSTestResult>> testsMap = new Dictionary<string, ICollection<MSTestResult>>();
-
-                foreach (MSTestResult testResult in testResults)
-                {
-                    foreach (string suit in testResult.Suites)
-                    {
-                        ICollection<MSTestResult> tests = null;
-
-                        if (!testsMap.TryGetValue(suit, out tests))
-                        {
-                            tests = new List<MSTestResult>();
-                            testsMap[suit] = tests;
-                        }
-
-                        tests.Add(testResult);
-                    }
-                }
-
+                IDictionary<string, ICollection<MSTestResult>> testsMap = CreateSuitToTestsMap(testResults);
 
                 foreach (KeyValuePair<string, ICollection<MSTestResult>> testResultBySuit in testsMap)
                 {
@@ -73,6 +55,29 @@ namespace MSTestAllureAdapter
             {
                 AllureConfig.ResultsPath = originalResultsPath;
             }
+        }
+
+        private IDictionary<string, ICollection<MSTestResult>> CreateSuitToTestsMap(IEnumerable<MSTestResult> testResults )
+        {
+            IDictionary<string, ICollection<MSTestResult>> testsMap = new Dictionary<string, ICollection<MSTestResult>>();
+
+            foreach (MSTestResult testResult in testResults)
+            {
+                foreach (string suit in testResult.Suites)
+                {
+                    ICollection<MSTestResult> tests = null;
+
+                    if (!testsMap.TryGetValue(suit, out tests))
+                    {
+                        tests = new List<MSTestResult>();
+                        testsMap[suit] = tests;
+                    }
+
+                    tests.Add(testResult);
+                }
+            }
+
+            return testsMap;
         }
 
         private void TestStarted(string suitId, string name)
