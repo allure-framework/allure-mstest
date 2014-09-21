@@ -38,10 +38,18 @@
     <Compile Include="TRXParser\TRXParser.cs" />
     <Compile Include="AllureAdapter.cs" />
     <Compile Include="MSTestResult.cs" />
+    <Compile Include="AllureEvents\TestCaseStartedWithTimeEvent.cs" />
+    <Compile Include="AllureEvents\TestCaseFinishedWithTimeEvent.cs" />
+    <Compile Include="AllureEvents\TestCaseFailureWithTimeEvent.cs" />
+    <Compile Include="AllureEvents\TestSuiteStartedWithTimeEvent.cs" />
+    <Compile Include="AllureEvents\TestSuiteFinishedWithTimeEvent.cs" />
+    <Compile Include="Utils\AllureResultsUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="TRXParser\" />
+    <Folder Include="AllureEvents\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TRXParser\vstst\vstst.xsd" />
