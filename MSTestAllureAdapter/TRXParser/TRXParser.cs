@@ -16,6 +16,11 @@ namespace MSTestAllureAdapter
     {
         private readonly XNamespace mTrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
 
+        /// <summary>
+        /// The category given to tests without any category.
+        /// </summary>
+        public static readonly string DEFAULT_CATEGORY = "NO_CATEGORY";
+
         /*
         ErrorInfo ParseErrorInfo(XElement r)
         {
@@ -52,28 +57,32 @@ namespace MSTestAllureAdapter
             string testRunName = doc.Document.Root.Attribute("name").Value;
             string runUser = doc.Document.Root.Attribute("runUser").Value;
 
-            IEnumerable<XElement> unitTests = doc.Descendants(ns + "UnitTest");           
+            IEnumerable<XElement> unitTests = doc.Descendants(ns + "UnitTest").ToList();           
 
-            IEnumerable<XElement> unitTestResults = doc.Descendants(ns + "UnitTestResult");
+            IEnumerable<XElement> unitTestResults = doc.Descendants(ns + "UnitTestResult").ToList();
+
+            Func<XElement, string> outerKeySelector = _ => _.Element(ns + "Execution").Attribute("id").Value;
+            Func<XElement, string> innerKeySelector = _ => _.Attribute("executionId").Value;
+            Func<XElement, XElement, MSTestResult> resultSelector = CreateMSTestResult;
 
             IEnumerable<MSTestResult> result = 
-                from unitTest in unitTests
-                            let id = unitTest.Element(ns + "Execution").Attribute("id").Value
-                            let description = unitTest.GetSafeValue(ns + "Description")
-                            let testClass = unitTest.GetSafeAttributeValue(ns + "TestMethod", "className")
-                            let testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name")
-                            let categories = from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
-                                                                                     select testCategory.GetSafeAttributeValue("TestCategory")
-                            join unitTestResult in unitTestResults
-                            on id equals unitTestResult.Attribute("executionId").Value
-                            let testResultData = new {
-                                                        Outcome = unitTestResult.Attribute("outcome").Value, 
-                                                        Start = DateTime.Parse(unitTestResult.Attribute("startTime").Value), 
-                                                        End = DateTime.Parse(unitTestResult.Attribute("endTime").Value)
-                                                     }
-                            select new MSTestResult(testName, (TestOutcome)Enum.Parse(typeof(TestOutcome), testResultData.Outcome), testResultData.Start, testResultData.End, categories.ToArray<string>());
+                unitTests.Join<XElement, XElement, string, MSTestResult>(unitTestResults, outerKeySelector, innerKeySelector, resultSelector, null);
 
             return result;
+        }
+
+        private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
+        {
+            string testName = unitTest.GetSafeAttributeValue(mTrxNamespace + "TestMethod", "name");
+            TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
+            DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value);
+            DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
+            string[] categories = (from testCategory in unitTest.Descendants(mTrxNamespace + "TestCategoryItem")
+                                            select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
+            if (categories.Length == 0)
+                categories = new string[]{ "NO_CATEGORY" };
+
+            return new MSTestResult(testName, outcome, start, end, categories);
         }
     }
 

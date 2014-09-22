@@ -3,7 +3,7 @@ using AllureCSharpCommons.Events;
 
 namespace MSTestAllureAdapter
 {
-    public class TestCaseFailureWithTimeEvent : TestCaseFinishedEvent
+    public class TestCaseFailureWithTimeEvent : TestCaseFailureEvent
     {
         public TestCaseFailureWithTimeEvent(DateTime finished)
         {
@@ -15,7 +15,7 @@ namespace MSTestAllureAdapter
         public override void Process(AllureCSharpCommons.AllureModel.testcaseresult context)
         {
             base.Process(context);
-            context.stop = Finished.ToUnixEpochTime();
+            //context.status = AllureCSharpCommons.AllureModel.status.failed;
         }
     }
 }

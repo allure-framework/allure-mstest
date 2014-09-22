@@ -18,7 +18,7 @@ namespace MSTestAllureAdapter.Tests
             { "TestMethod1", new HashSet<string>{"Category1"} },
             { "TestMethod2", new HashSet<string>{"Category1", "Category2"} },
             { "TestMethod3", new HashSet<string>{"Category2"} },
-            { "TestMethod4", new HashSet<string>() }
+            { "TestMethod4", new HashSet<string>{TRXParser.DEFAULT_CATEGORY} }
         };
 
         [SetUp]
