@@ -9,8 +9,6 @@ namespace MSTestAllureAdapter.Tests
     [TestFixture()]
     public class TRXParserTests
     {
-        const int NUMBER_OF_EXPECTED_TESTS = 4;
-
         private IEnumerable<MSTestResult> mTestResults;
 
         private IDictionary<string, ICollection<string>> mExpectedTestsCategoriesMap = new Dictionary<string, ICollection<string>>
@@ -19,6 +17,18 @@ namespace MSTestAllureAdapter.Tests
             { "TestMethod2", new HashSet<string>{"Category1", "Category2"} },
             { "TestMethod3", new HashSet<string>{"Category2"} },
             { "TestMethod4", new HashSet<string>{TRXParser.DEFAULT_CATEGORY} }
+        };
+
+        private IDictionary<string, MSTestResult> mExpectedTestsResultsMap = new Dictionary<string, MSTestResult>
+        { 
+            { "TestMethod1", new MSTestResult("", TestOutcome.Passed, "") },
+            { "TestMethod2", new MSTestResult("", TestOutcome.Passed, "") },
+            { "TestMethod3", new MSTestResult("", TestOutcome.Passed, "") },
+            { "Test_Without_Category", new MSTestResult("", TestOutcome.Passed, "") },
+            { "SimpleFailingTest", new MSTestResult("", TestOutcome.Failed, "") },
+            { "ExpectedException", new MSTestResult("", TestOutcome.Passed, "") },
+            { "ExpectedExceptionWithNoExceptionMessage", new MSTestResult("", TestOutcome.Passed, "") },
+            { "UnexpectedException", new MSTestResult("", TestOutcome.Failed, "") }
         };
 
         [SetUp]
@@ -33,13 +43,13 @@ namespace MSTestAllureAdapter.Tests
         [Test]
         public void ExpectedNumberOfTestsWereFound()
         {
-            Assert.AreEqual(NUMBER_OF_EXPECTED_TESTS, mTestResults.Count());
+            Assert.AreEqual(mExpectedTestsResultsMap.Keys.Count, mTestResults.Count());
         }
 
         [Test]
         public void AllTestsWereFound()
         {
-            IEnumerable<string> expected = mExpectedTestsCategoriesMap.Keys;
+            IEnumerable<string> expected = mExpectedTestsResultsMap.Keys;
             IEnumerable<string> found = mTestResults.Select(testResult => testResult.Name);
 
             EnumerableDiffResult result = EnumerableDiff(expected, found);
@@ -62,7 +72,21 @@ namespace MSTestAllureAdapter.Tests
                     Assert.AreEqual(0, result.TotalOff, "Test '" + testResult.Name + "' : "+ Environment.NewLine + result.Message);
                 }
             }
+        }
 
+        [Test]
+        public void TestOutcomesMatch()
+        {
+            foreach (MSTestResult testResult in mTestResults)
+            {
+                TestOutcome expected = mExpectedTestsResultsMap[testResult.Name].Outcome;
+                TestOutcome actual = testResult.Outcome;
+
+                if (expected != actual)
+                {
+                    Assert.Fail("Test '" + testResult.Name + "' was found to have an outcome of " + actual + " instead of the expected " + expected);
+                }
+            }
         }
 
 
