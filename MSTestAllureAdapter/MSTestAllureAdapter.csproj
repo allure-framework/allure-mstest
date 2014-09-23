@@ -36,7 +36,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TRXParser\vstst\vstst.cs" />
     <Compile Include="TRXParser\TRXParser.cs" />
-    <Compile Include="AllureAdapter.cs" />
     <Compile Include="MSTestResult.cs" />
     <Compile Include="AllureEvents\TestCaseStartedWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestCaseFinishedWithTimeEvent.cs" />
@@ -44,6 +43,8 @@
     <Compile Include="AllureEvents\TestSuiteFinishedWithTimeEvent.cs" />
     <Compile Include="Utils\AllureResultsUtils.cs" />
     <Compile Include="AllureEvents\TestCaseFailureWithErrorInfoEvent.cs" />
+    <Compile Include="AllureAdapterBase.cs" />
+    <Compile Include="AllureAdapter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
