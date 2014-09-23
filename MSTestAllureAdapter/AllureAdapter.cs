@@ -3,6 +3,7 @@ using AllureCSharpCommons;
 using AllureCSharpCommons.Events;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MSTestAllureAdapter
 {
@@ -40,18 +41,12 @@ namespace MSTestAllureAdapter
                             
                         switch (testResult.Outcome)
                         {
-                            case TestOutcome.Completed:
-                            case TestOutcome.Passed:
-                                        TestFinished(testResult.End);
-                                break;
-
                             case TestOutcome.Failed:
-                                        TestFailed(testResult.End);
+                                TestFailed(testResult.ErrorInfo);
                                 break;
-
-                            default:
-                                throw new Exception("Test result '" + testResult.Outcome.ToString() + "' is not handled.");
                         }
+
+                        TestFinished(testResult.End);
                     }
 
                     TestSuitFinished(suitUid, last.End);
@@ -96,9 +91,9 @@ namespace MSTestAllureAdapter
             Allure.Lifecycle.Fire(new TestCaseFinishedWithTimeEvent(finished));
         }
 
-        protected virtual void TestFailed(DateTime finished)
+        protected virtual void TestFailed(ErrorInfo errorInfo)
         {
-            Allure.Lifecycle.Fire(new TestCaseFailureWithTimeEvent(finished));
+            Allure.Lifecycle.Fire(new TestCaseFailureWithErrorInfoEvent(errorInfo));
         }
 
         protected virtual void TestSuitStarted(string uid, string name, DateTime started)

@@ -40,10 +40,10 @@
     <Compile Include="MSTestResult.cs" />
     <Compile Include="AllureEvents\TestCaseStartedWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestCaseFinishedWithTimeEvent.cs" />
-    <Compile Include="AllureEvents\TestCaseFailureWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestSuiteStartedWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestSuiteFinishedWithTimeEvent.cs" />
     <Compile Include="Utils\AllureResultsUtils.cs" />
+    <Compile Include="AllureEvents\TestCaseFailureWithErrorInfoEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
