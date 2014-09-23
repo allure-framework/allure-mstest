@@ -44,8 +44,14 @@ namespace MSTestAllureAdapter
 		}
 
 
-        public MSTestResult (string testName, TestOutcome outcome, DateTime start, DateTime end, string suiteName)
-            : this(testName, outcome, start, end, new string[] { suiteName }) { }
+        public MSTestResult (string testName, TestOutcome outcome, DateTime start, DateTime end, string suite)
+            : this(testName, outcome, start, end, new string[] { suite }) { }
+
+        public MSTestResult (string testName, TestOutcome outcome, string[] suits)
+            : this(testName, outcome, default(DateTime), default(DateTime), suits) { }
+
+        public MSTestResult (string testName, TestOutcome outcome, string suite)
+            : this(testName, outcome, default(DateTime), default(DateTime), suite) { }
 
 		public string Name { get; private set; }
 
@@ -56,6 +62,13 @@ namespace MSTestAllureAdapter
         public DateTime Start { get; private set; }
 
         public DateTime End { get; private set; }
+
+        public ErrorInfo ErrorInfo { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[MSTestResult: Name={0}, Suites=[{1}], Outcome={2}, Start={3}, End={4}, ErrorInfo={5}]", Name, String.Join(",", Suites), Outcome, Start, End, ErrorInfo);
+        }
 	}
 }
 

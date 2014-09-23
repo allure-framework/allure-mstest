@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using System.Xml;
 
 namespace MSTestAllureAdapter
 {
@@ -14,40 +15,42 @@ namespace MSTestAllureAdapter
     /// </summary>
     public class TRXParser
     {
-        private readonly XNamespace mTrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
+        private static readonly XNamespace mTrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
+
 
         /// <summary>
         /// The category given to tests without any category.
         /// </summary>
         public static readonly string DEFAULT_CATEGORY = "NO_CATEGORY";
 
-        /*
-        ErrorInfo ParseErrorInfo(XElement r)
+
+        ErrorInfo ParseErrorInfo(XElement errorInfoXmlElement)
         {
-            ErrorInfo err = new ErrorInfo();
-            if (r.Element(ns + "Output") != null && 
-                r.Element(ns + "Output").Element(ns + "ErrorInfo") != null &&
-                r.Element(ns + "Output").Element(ns + "ErrorInfo").Element(ns + "Message") != null )
-                {
-                    err.Message = r.Element(ns + "Output").Element(ns + "ErrorInfo").Element(ns + "Message").Value;
+            XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
+            xmlNamespaceManager.AddNamespace("prefix", mTrxNamespace.NamespaceName);
 
-                }
+            ErrorInfo errorInfo = new ErrorInfo();
 
-            if (r.Descendants(ns + "StackTrace").Count()> 0 )
-                {
-                    err.StackTrace = r.Descendants(ns + "StackTrace").FirstOrDefault().Value;
-                }
+            XElement messageElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:Message", xmlNamespaceManager);
+            if (messageElement != null)
+            {
+                errorInfo.Message = messageElement.Value;
+            }
 
-            if (r.Descendants(ns + "DebugTrace").Count() > 0)
-                {
-                    err.StdOut = r.Descendants(ns + "DebugTrace").FirstOrDefault().Value.Replace("\r\n", "<br />");
-                }
+            XElement stackTraceElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:StackTrace", xmlNamespaceManager);
+            if (stackTraceElement != null)
+            {
+                errorInfo.StackTrace = stackTraceElement.Value;
+            }
 
-            return err;
+            XElement stdOutElement = errorInfoXmlElement.XPathSelectElement("prefix:StdOut", xmlNamespaceManager);
+            if (stdOutElement != null)
+            {
+                errorInfo.StdOut = stdOutElement.Value;
+            }
+
+            return errorInfo;
         }
-        */
-       
-
 
         public IEnumerable<MSTestResult> GetTestResults(string filePath)
         {
@@ -73,16 +76,23 @@ namespace MSTestAllureAdapter
 
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
         {
-            string testName = unitTest.GetSafeAttributeValue(mTrxNamespace + "TestMethod", "name");
+            XNamespace ns = mTrxNamespace;
+            string testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
             DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value);
             DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
-            string[] categories = (from testCategory in unitTest.Descendants(mTrxNamespace + "TestCategoryItem")
+            string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
                                             select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
             if (categories.Length == 0)
                 categories = new string[]{ "NO_CATEGORY" };
 
-            return new MSTestResult(testName, outcome, start, end, categories);
+            MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories);
+
+            if (outcome == TestOutcome.Error || outcome == TestOutcome.Failed)
+            {
+                    testResult.ErrorInfo = ParseErrorInfo(unitTestResult.Element(ns + "Output"));
+            }
+            return testResult;
         }
     }
 
@@ -141,6 +151,21 @@ namespace MSTestAllureAdapter
 
             return result;
         }
+    }
+
+    public class ErrorInfo
+    {
+        public string Message { get; set; }
+
+        public string StackTrace { get; set; }
+
+        public string StdOut { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[ErrorInfo: Message={0}, StackTrace={1}, StdOut={2}]", Message, StackTrace, StdOut);
+        }
+
     }
 }
 
