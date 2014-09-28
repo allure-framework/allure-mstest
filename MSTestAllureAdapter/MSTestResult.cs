@@ -73,6 +73,13 @@ namespace MSTestAllureAdapter
 
         public ErrorInfo ErrorInfo { get; set; }
 
+        /// <summary>
+        /// Gets or sets the test owner.
+        /// According to the vstst.xsd currently only one owner is supported.
+        /// </summary>
+        /// <value>The test owner.</value>
+        public string Owner { get; set; }
+
         public override string ToString()
         {
             return string.Format("[MSTestResult: Name={0}, Suites=[{1}], Outcome={2}, Start={3}, End={4}, ErrorInfo={5}]", Name, String.Join(",", Suites), Outcome, Start, End, ErrorInfo);

@@ -9,7 +9,7 @@ namespace MSTestAllureAdapter
             switch (testResult.Outcome)
             {
                 case TestOutcome.Failed:
-                    TestFailed(testResult.ErrorInfo);
+                    TestFailed(testResult);
                     break;
             }
         }

@@ -4,6 +4,7 @@ using AllureCSharpCommons.Events;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AllureCSharpCommons.AllureModel;
 
 namespace MSTestAllureAdapter
 {
@@ -50,11 +51,11 @@ namespace MSTestAllureAdapter
 
                     foreach (MSTestResult testResult in testResultBySuit.Value)
                     {
-                        TestStarted(suitUid, testResult.Name, testResult.Start);
+                        TestStarted(suitUid, testResult);
                         
                         HandleTestResult(testResult);
 
-                        TestFinished(testResult.End);
+                        TestFinished(testResult);
                     }
 
                     TestSuitFinished(suitUid, last.End);
@@ -96,24 +97,36 @@ namespace MSTestAllureAdapter
             return testsMap;
         }
 
-        protected virtual void TestStarted(string suitId, string name, DateTime started)
+        protected virtual void TestStarted(string suitId, MSTestResult testResult)
         {
-            Allure.Lifecycle.Fire(new TestCaseStartedWithTimeEvent(suitId, name, started));
+            TestCaseStartedWithTimeEvent testCase = new TestCaseStartedWithTimeEvent(suitId, testResult.Name, testResult.Start);
+
+            if (testResult.Owner != null)
+            {
+                label ownerLabel = new label();
+                ownerLabel.name = "Owner";
+                ownerLabel.value = testResult.Owner;
+
+                testCase.Labels = new label[]{ ownerLabel };
+                testCase.Description = new description { type = descriptiontype.text, Value = "Test Owner: " + testResult.Owner };
+            }
+
+            Allure.Lifecycle.Fire(testCase);
         }
 
-        protected virtual void TestFinished(DateTime finished)
+        protected virtual void TestFinished(MSTestResult testResult)
         {
-            Allure.Lifecycle.Fire(new TestCaseFinishedWithTimeEvent(finished));
+            Allure.Lifecycle.Fire(new TestCaseFinishedWithTimeEvent(testResult.End));
         }
 
-        protected virtual void TestFailed(ErrorInfo errorInfo)
+        protected virtual void TestFailed(MSTestResult testResult)
         {
-            Allure.Lifecycle.Fire(new TestCaseFailureWithErrorInfoEvent(errorInfo));
+            Allure.Lifecycle.Fire(new TestCaseFailureWithErrorInfoEvent(testResult.ErrorInfo));
         }
 
-        protected virtual void TestSuitStarted(string uid, string name, DateTime started)
+        protected virtual void TestSuitStarted(string uid, string name, DateTime start)
         {
-            Allure.Lifecycle.Fire(new TestSuiteStartedWithTimeEvent(uid, name, started));
+            Allure.Lifecycle.Fire(new TestSuiteStartedWithTimeEvent(uid, name, start));
         }
 
         protected virtual void TestSuitFinished(string uid, DateTime finished)

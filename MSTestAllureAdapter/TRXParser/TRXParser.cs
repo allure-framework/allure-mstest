@@ -74,12 +74,28 @@ namespace MSTestAllureAdapter
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
         {
             XNamespace ns = mTrxNamespace;
+
             string testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
+
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
+
             DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value);
+
             DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
+
             string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
                                             select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
+
+            string owner = null;
+
+            XElement ownerElement = unitTest.Descendants(ns + "Owner").FirstOrDefault();
+
+            if (ownerElement != null)
+            {
+                XAttribute ownerAttribute = ownerElement.Attribute("name");
+                owner = ownerAttribute.Value;
+            }
+
             /*
             if (categories.Length == 0)
                 categories = new string[]{ DEFAULT_CATEGORY };
@@ -88,8 +104,11 @@ namespace MSTestAllureAdapter
 
             if (outcome == TestOutcome.Error || outcome == TestOutcome.Failed)
             {
-                    testResult.ErrorInfo = ParseErrorInfo(unitTestResult.Element(ns + "Output"));
+                testResult.ErrorInfo = ParseErrorInfo(unitTestResult.Element(ns + "Output"));
             }
+
+            testResult.Owner = owner;
+
             return testResult;
         }
     }
@@ -110,11 +129,11 @@ namespace MSTestAllureAdapter
             return result;
         }
 
-        public static string GetSafeAttributeValue(this XElement element, XName name, XName attributeName)
+        public static string GetSafeAttributeValue(this XElement element, XName descendantElement, XName attributeName)
         {
             string result = String.Empty;
 
-            element = element.Element(name);
+            element = element.Element(descendantElement);
 
             if (element != null && element.Attribute(attributeName) != null)
             {

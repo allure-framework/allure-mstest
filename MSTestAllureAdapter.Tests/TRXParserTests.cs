@@ -26,6 +26,11 @@ namespace MSTestAllureAdapter.Tests
         [SetUp]
         public void SetUp()
         {
+            mExpectedTestsResultsMap["TestMethod1"].Owner = "Owner1";
+            mExpectedTestsResultsMap["TestMethod2"].Owner = "Owner2";
+            mExpectedTestsResultsMap["TestMethod3"].Owner = "Owner1";
+            mExpectedTestsResultsMap["SimpleFailingTest"].Owner = "OwnerOfFailingTest";
+
             TRXParser parser = new TRXParser();
 
             mTestResults = parser.GetTestResults("sample.trx");
@@ -77,6 +82,21 @@ namespace MSTestAllureAdapter.Tests
                 if (expected != actual)
                 {
                     Assert.Fail("Test '" + testResult.Name + "' was found to have an outcome of " + actual + " instead of the expected " + expected);
+                }
+            }
+        }
+
+        [Test]
+        public void TestOwnersWereFound()
+        {
+            foreach (MSTestResult testResult in mTestResults)
+            {
+                string expected = mExpectedTestsResultsMap[testResult.Name].Owner;
+                string actual = testResult.Owner;
+
+                if (String.Compare(expected, actual, true) != 0)
+                {
+                    Assert.Fail("Test '" + testResult.Name + "' owner was found to be '" + actual + "' instead of the expected '" + expected + "'");
                 }
             }
         }

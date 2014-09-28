@@ -37,6 +37,9 @@ System.Exception: Exception of type 'System.Exception' was thrown.</Message>
   </Results>
   <TestDefinitions>
     <UnitTest name="TestMethod1" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="07615eb7-235a-11a1-4f45-a06cb4d2655e">
+      <Owners>
+      	<Owner name="Owner1" />
+      </Owners>
       <TestCategory>
       	<TestCategoryItem TestCategory="Category1" />
       </TestCategory>
@@ -44,6 +47,9 @@ System.Exception: Exception of type 'System.Exception' was thrown.</Message>
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod1" />
     </UnitTest>
     <UnitTest name="TestMethod2" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="310ffa11-b40e-2240-f06c-82c2271155b4">
+      <Owners>
+      	<Owner name="Owner2" />
+      </Owners>
       <TestCategory>
       	<TestCategoryItem TestCategory="Category1" />
       	<TestCategoryItem TestCategory="Category2" />
@@ -52,6 +58,9 @@ System.Exception: Exception of type 'System.Exception' was thrown.</Message>
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod2" />
     </UnitTest>
     <UnitTest name="TestMethod3" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="12fb41d8-85fc-cbfb-1138-28f3c6818cfe">
+      <Owners>
+      	<Owner name="Owner1" />
+      </Owners>
       <TestCategory>
       	<TestCategoryItem TestCategory="Category2" />
       </TestCategory>
@@ -63,6 +72,9 @@ System.Exception: Exception of type 'System.Exception' was thrown.</Message>
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="Test_Without_Category" />
     </UnitTest>
     <UnitTest name="SimpleFailingTest" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="85da7ce7-0103-9d79-7dcd-cae058b187f7">
+      <Owners>
+      	<Owner name="OwnerOfFailingTest" />
+      </Owners>
       <Execution id="e54c48d0-80c1-4890-9641-807adf4165ce" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="SimpleFailingTest" />
     </UnitTest>
