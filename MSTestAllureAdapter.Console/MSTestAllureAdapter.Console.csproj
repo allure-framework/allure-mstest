@@ -39,6 +39,10 @@
       <Project>{9CED0C38-BCEB-4BFC-9294-38455758A461}</Project>
       <Name>MSTestAllureAdapter</Name>
     </ProjectReference>
+    <ProjectReference Include="..\allure-csharp-commons\AllureCSharpCommons\AllureCSharpCommons.csproj">
+      <Project>{0C358997-150B-4752-8B69-8B174167D730}</Project>
+      <Name>AllureCSharpCommons</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\MSTestAllureAdapter.Tests\sample.trx">
