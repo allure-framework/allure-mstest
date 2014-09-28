@@ -10,47 +10,16 @@ using System.Xml;
 namespace MSTestAllureAdapter
 {
     /// <summary>
-    /// TRX parser.
-    /// Based on the trx2html parser code: http://trx2html.codeplex.com/ 
+    /// MSTest TRX output parser.
     /// </summary>
     public class TRXParser
     {
         private static readonly XNamespace mTrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
 
-
         /// <summary>
         /// The category given to tests without any category.
         /// </summary>
         public static readonly string DEFAULT_CATEGORY = "NO_CATEGORY";
-
-
-        ErrorInfo ParseErrorInfo(XElement errorInfoXmlElement)
-        {
-            XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
-            xmlNamespaceManager.AddNamespace("prefix", mTrxNamespace.NamespaceName);
-
-            ErrorInfo errorInfo = new ErrorInfo();
-
-            XElement messageElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:Message", xmlNamespaceManager);
-            if (messageElement != null)
-            {
-                errorInfo.Message = messageElement.Value;
-            }
-
-            XElement stackTraceElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:StackTrace", xmlNamespaceManager);
-            if (stackTraceElement != null)
-            {
-                errorInfo.StackTrace = stackTraceElement.Value;
-            }
-
-            XElement stdOutElement = errorInfoXmlElement.XPathSelectElement("prefix:StdOut", xmlNamespaceManager);
-            if (stdOutElement != null)
-            {
-                errorInfo.StdOut = stdOutElement.Value;
-            }
-
-            return errorInfo;
-        }
 
         public IEnumerable<MSTestResult> GetTestResults(string filePath)
         {
@@ -68,10 +37,38 @@ namespace MSTestAllureAdapter
             Func<XElement, string> innerKeySelector = _ => _.Attribute("executionId").Value;
             Func<XElement, XElement, MSTestResult> resultSelector = CreateMSTestResult;
 
-            IEnumerable<MSTestResult> result = 
-                unitTests.Join<XElement, XElement, string, MSTestResult>(unitTestResults, outerKeySelector, innerKeySelector, resultSelector, null);
+            IEnumerable<MSTestResult> result = unitTests.Join<XElement, XElement, string, MSTestResult>(unitTestResults, outerKeySelector, innerKeySelector, resultSelector);
 
             return result;
+        }
+
+
+        private ErrorInfo ParseErrorInfo(XElement errorInfoXmlElement)
+        {
+            XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
+            xmlNamespaceManager.AddNamespace("prefix", mTrxNamespace.NamespaceName);
+
+            ErrorInfo errorInfo = new ErrorInfo();
+
+            XElement messageElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:Message", xmlNamespaceManager);
+            if (messageElement != null)
+                {
+                    errorInfo.Message = messageElement.Value;
+                }
+
+            XElement stackTraceElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:StackTrace", xmlNamespaceManager);
+            if (stackTraceElement != null)
+                {
+                    errorInfo.StackTrace = stackTraceElement.Value;
+                }
+
+            XElement stdOutElement = errorInfoXmlElement.XPathSelectElement("prefix:StdOut", xmlNamespaceManager);
+            if (stdOutElement != null)
+                {
+                    errorInfo.StdOut = stdOutElement.Value;
+                }
+
+            return errorInfo;
         }
 
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
@@ -153,12 +150,27 @@ namespace MSTestAllureAdapter
         }
     }
 
+    /// <summary>
+    /// Represents an ErrorInfo element in the trx file.
+    /// </summary>
     public class ErrorInfo
     {
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>
+        /// <value>The message.</value>
         public string Message { get; set; }
 
+        /// <summary>
+        /// Gets or sets the stack trace.
+        /// </summary>
+        /// <value>The stack trace.</value>
         public string StackTrace { get; set; }
 
+        /// <summary>
+        /// Gets or sets the StdOut.
+        /// </summary>
+        /// <value>The StdOut.</value>
         public string StdOut { get; set; }
 
         public override string ToString()
