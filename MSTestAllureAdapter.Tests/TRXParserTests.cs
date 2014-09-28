@@ -11,24 +11,16 @@ namespace MSTestAllureAdapter.Tests
     {
         private IEnumerable<MSTestResult> mTestResults;
 
-        private IDictionary<string, ICollection<string>> mExpectedTestsCategoriesMap = new Dictionary<string, ICollection<string>>
-        { 
-            { "TestMethod1", new HashSet<string>{"Category1"} },
-            { "TestMethod2", new HashSet<string>{"Category1", "Category2"} },
-            { "TestMethod3", new HashSet<string>{"Category2"} },
-            { "TestMethod4", new HashSet<string>{TRXParser.DEFAULT_CATEGORY} }
-        };
-
         private IDictionary<string, MSTestResult> mExpectedTestsResultsMap = new Dictionary<string, MSTestResult>
         { 
-            { "TestMethod1", new MSTestResult("", TestOutcome.Passed, "") },
-            { "TestMethod2", new MSTestResult("", TestOutcome.Passed, "") },
-            { "TestMethod3", new MSTestResult("", TestOutcome.Passed, "") },
-            { "Test_Without_Category", new MSTestResult("", TestOutcome.Passed, "") },
-            { "SimpleFailingTest", new MSTestResult("", TestOutcome.Failed, "") },
-            { "ExpectedException", new MSTestResult("", TestOutcome.Passed, "") },
-            { "ExpectedExceptionWithNoExceptionMessage", new MSTestResult("", TestOutcome.Passed, "") },
-            { "UnexpectedException", new MSTestResult("", TestOutcome.Failed, "") }
+            { "TestMethod1", new MSTestResult("", TestOutcome.Passed, "Category1") },
+            { "TestMethod2", new MSTestResult("", TestOutcome.Passed, "Category1", "Category2") },
+            { "TestMethod3", new MSTestResult("", TestOutcome.Passed, "Category2") },
+            { "Test_Without_Category", new MSTestResult("", TestOutcome.Passed) },
+            { "SimpleFailingTest", new MSTestResult("", TestOutcome.Failed) },
+            { "ExpectedException", new MSTestResult("", TestOutcome.Passed) },
+            { "ExpectedExceptionWithNoExceptionMessage", new MSTestResult("", TestOutcome.Passed) },
+            { "UnexpectedException", new MSTestResult("", TestOutcome.Failed) }
         };
 
         [SetUp]
@@ -62,9 +54,14 @@ namespace MSTestAllureAdapter.Tests
         {
             foreach (MSTestResult testResult in mTestResults)
             {
-                IEnumerable<string> expected = mExpectedTestsCategoriesMap[testResult.Name];
+                IEnumerable<string> expected = mExpectedTestsResultsMap[testResult.Name].Suites;
                 IEnumerable<string> found = testResult.Suites;
                 
+                if (expected == null && found == null)
+                    continue;
+
+
+
                 EnumerableDiffResult result = EnumerableDiff(expected, found);
 
                 if (result.TotalOff > 0)
@@ -92,6 +89,12 @@ namespace MSTestAllureAdapter.Tests
 
         private EnumerableDiffResult EnumerableDiff(IEnumerable<string> expected, IEnumerable<string> found)
         {
+            if (expected == null)
+                expected = Enumerable.Empty<string>();
+
+            if (found == null)
+                found = Enumerable.Empty<string>();
+
             HashSet<string> missing = new HashSet<string>(expected);
             missing.ExceptWith(found);
 
@@ -104,14 +107,14 @@ namespace MSTestAllureAdapter.Tests
             if (missing.Count > 0)
                 {
                     message += "The following items were not found: ";
-                    message += String.Join(", ", missing);
+                    message += String.Join(", ", missing.Select( _ => "'" + _ + "'"));
                     message += Environment.NewLine;
                 }
 
             if (notExpected.Count > 0)
                 {
                     message += "The following items were not expected: ";
-                    message += String.Join(", ", notExpected);
+                    message += String.Join(", ", notExpected.Select( _ => "'" + _ + "'"));
                     message += Environment.NewLine;
                 }
 

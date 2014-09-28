@@ -37,14 +37,24 @@ System.Exception: Exception of type 'System.Exception' was thrown.</Message>
   </Results>
   <TestDefinitions>
     <UnitTest name="TestMethod1" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="07615eb7-235a-11a1-4f45-a06cb4d2655e">
+      <TestCategory>
+      	<TestCategoryItem TestCategory="Category1" />
+      </TestCategory>
       <Execution id="3d521509-bd64-490d-9583-a49c0ed4cb9e" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod1" />
     </UnitTest>
     <UnitTest name="TestMethod2" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="310ffa11-b40e-2240-f06c-82c2271155b4">
+      <TestCategory>
+      	<TestCategoryItem TestCategory="Category1" />
+      	<TestCategoryItem TestCategory="Category2" />
+      </TestCategory>
       <Execution id="363853e4-f887-4ccd-ae09-0f625112e02e" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod2" />
     </UnitTest>
     <UnitTest name="TestMethod3" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="12fb41d8-85fc-cbfb-1138-28f3c6818cfe">
+      <TestCategory>
+      	<TestCategoryItem TestCategory="Category2" />
+      </TestCategory>
       <Execution id="618445ca-9d2c-4bc2-9113-d88c5061c786" />
       <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod3" />
     </UnitTest>

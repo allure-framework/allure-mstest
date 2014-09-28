@@ -32,11 +32,14 @@ namespace MSTestAllureAdapter
 		{ 
             Name = name;
 
-			// strings are immutable to no deep copy is needed.
-            string[] suiteNamesCopy = new string[suits.Length];
-            Array.Copy(suits, suiteNamesCopy, suits.Length);
+            if (suits != null && suits.Length > 0)
+            {
+                // strings are immutable to no deep copy is needed.
+                string[] suiteNamesCopy = new string[suits.Length];
+                Array.Copy(suits, suiteNamesCopy, suits.Length);
 
-			Suites = suiteNamesCopy;
+                Suites = suiteNamesCopy;
+            }
 
 			Outcome = outcome;
             Start = start;
@@ -47,11 +50,14 @@ namespace MSTestAllureAdapter
         public MSTestResult (string testName, TestOutcome outcome, DateTime start, DateTime end, string suite)
             : this(testName, outcome, start, end, new string[] { suite }) { }
 
-        public MSTestResult (string testName, TestOutcome outcome, string[] suits)
+        public MSTestResult (string testName, TestOutcome outcome, params string[] suits)
             : this(testName, outcome, default(DateTime), default(DateTime), suits) { }
 
         public MSTestResult (string testName, TestOutcome outcome, string suite)
             : this(testName, outcome, default(DateTime), default(DateTime), suite) { }
+
+        public MSTestResult (string testName, TestOutcome outcome)
+            : this(testName, outcome, default(DateTime), default(DateTime), (string[])null) { }
 
 		public string Name { get; private set; }
 

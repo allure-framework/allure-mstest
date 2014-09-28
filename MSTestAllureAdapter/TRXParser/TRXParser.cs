@@ -80,9 +80,10 @@ namespace MSTestAllureAdapter
             DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
             string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
                                             select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
+            /*
             if (categories.Length == 0)
-                categories = new string[]{ "NO_CATEGORY" };
-
+                categories = new string[]{ DEFAULT_CATEGORY };
+            */
             MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories);
 
             if (outcome == TestOutcome.Error || outcome == TestOutcome.Failed)
