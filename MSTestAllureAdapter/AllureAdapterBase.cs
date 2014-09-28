@@ -9,7 +9,14 @@ namespace MSTestAllureAdapter
 {
     public abstract class AllureAdapterBase
     {
+        static AllureAdapterBase()
+        {
+            AllureConfig.AllowEmptySuites = true;
+        }
+
         private TRXParser mTrxParser = new TRXParser();
+
+        private static readonly string EMPTY_SUITE_CATEGORY_NAME = "NO_CATEGORY";
 
         protected abstract void HandleTestResult(MSTestResult testResult);
 
@@ -33,6 +40,11 @@ namespace MSTestAllureAdapter
                     
                     MSTestResult first = tests.Aggregate((a, b) => a.Start < b.Start ? a : b);
                     MSTestResult last = tests.Aggregate((a, b) => a.End > b.End ? a : b);
+
+                    if (suitName == EMPTY_SUITE_CATEGORY_NAME)
+                    {
+                        suitName = null;
+                    }
 
                     TestSuitStarted(suitUid, suitName, first.Start);
 
@@ -60,7 +72,14 @@ namespace MSTestAllureAdapter
 
             foreach (MSTestResult testResult in testResults)
             {
-                foreach (string suit in testResult.Suites)
+                IEnumerable<string> suits = testResult.Suites;
+
+                if (!testResult.Suites.Any())
+                {
+                    suits = new string[]{ EMPTY_SUITE_CATEGORY_NAME };
+                }
+
+                foreach (string suit in suits)
                 {
                     ICollection<MSTestResult> tests = null;
 

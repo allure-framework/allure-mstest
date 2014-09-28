@@ -32,14 +32,16 @@ namespace MSTestAllureAdapter
 		{ 
             Name = name;
 
-            if (suits != null && suits.Length > 0)
+            if (suits == null)
             {
-                // strings are immutable to no deep copy is needed.
-                string[] suiteNamesCopy = new string[suits.Length];
-                Array.Copy(suits, suiteNamesCopy, suits.Length);
-
-                Suites = suiteNamesCopy;
+                suits = new string[0];
             }
+
+            // strings are immutable to no deep copy is needed.
+            string[] suiteNamesCopy = new string[suits.Length];
+            Array.Copy(suits, suiteNamesCopy, suits.Length);
+
+            Suites = suiteNamesCopy;
 
 			Outcome = outcome;
             Start = start;

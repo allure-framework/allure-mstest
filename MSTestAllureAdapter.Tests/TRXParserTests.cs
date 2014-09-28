@@ -57,11 +57,6 @@ namespace MSTestAllureAdapter.Tests
                 IEnumerable<string> expected = mExpectedTestsResultsMap[testResult.Name].Suites;
                 IEnumerable<string> found = testResult.Suites;
                 
-                if (expected == null && found == null)
-                    continue;
-
-
-
                 EnumerableDiffResult result = EnumerableDiff(expected, found);
 
                 if (result.TotalOff > 0)
