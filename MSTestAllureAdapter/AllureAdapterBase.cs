@@ -8,6 +8,9 @@ using AllureCSharpCommons.AllureModel;
 
 namespace MSTestAllureAdapter
 {
+    /// <summary>
+    /// The base class for the Allure adapter.
+    /// </summary>
     public abstract class AllureAdapterBase
     {
         static AllureAdapterBase()
@@ -21,7 +24,12 @@ namespace MSTestAllureAdapter
 
         protected abstract void HandleTestResult(MSTestResult testResult);
 
-        public void Run(string trxFile, string resultsPath)
+        /// <summary>
+        /// Generates the test results from the supplied TRX file to be used by the allure framework.
+        /// </summary>
+        /// <param name="trxFile">Trx file.</param>
+        /// <param name="resultsPath">Results path where the files shuold be saved.</param>
+        public void GenerateTestResults(string trxFile, string resultsPath)
         {
             string originalResultsPath = AllureConfig.ResultsPath;
 
