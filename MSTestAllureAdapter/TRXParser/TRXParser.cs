@@ -14,7 +14,7 @@ namespace MSTestAllureAdapter
     /// </summary>
     public class TRXParser
     {
-        private static readonly XNamespace mTrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
+        internal static readonly XNamespace TrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
 
         /// <summary>
         /// The category given to tests without any category.
@@ -24,7 +24,7 @@ namespace MSTestAllureAdapter
         public IEnumerable<MSTestResult> GetTestResults(string filePath)
         {
             XDocument doc = XDocument.Load(filePath);
-            XNamespace ns = mTrxNamespace;
+            XNamespace ns = TrxNamespace;
 
             string testRunName = doc.Document.Root.Attribute("name").Value;
             string runUser = doc.Document.Root.Attribute("runUser").Value;
@@ -46,7 +46,7 @@ namespace MSTestAllureAdapter
         private ErrorInfo ParseErrorInfo(XElement errorInfoXmlElement)
         {
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
-            xmlNamespaceManager.AddNamespace("prefix", mTrxNamespace.NamespaceName);
+            xmlNamespaceManager.AddNamespace("prefix", TrxNamespace.NamespaceName);
 
             ErrorInfo errorInfo = new ErrorInfo();
 
@@ -73,7 +73,7 @@ namespace MSTestAllureAdapter
 
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
         {
-            XNamespace ns = mTrxNamespace;
+            XNamespace ns = TrxNamespace;
 
             string testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
 
@@ -85,17 +85,7 @@ namespace MSTestAllureAdapter
 
             string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
                                             select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
-
-            string owner = null;
-
-            XElement ownerElement = unitTest.Descendants(ns + "Owner").FirstOrDefault();
-
-            if (ownerElement != null)
-            {
-                XAttribute ownerAttribute = ownerElement.Attribute("name");
-                owner = ownerAttribute.Value;
-            }
-
+                
             /*
             if (categories.Length == 0)
                 categories = new string[]{ DEFAULT_CATEGORY };
@@ -107,9 +97,26 @@ namespace MSTestAllureAdapter
                 testResult.ErrorInfo = ParseErrorInfo(unitTestResult.Element(ns + "Output"));
             }
 
-            testResult.Owner = owner;
+            testResult.Owner = GetOwner(unitTest);
 
             return testResult;
+        }
+
+        private string GetOwner(XElement unitTestElement)
+        {
+            XNamespace ns = TrxNamespace;
+
+            string owner = null;
+
+            XElement ownerElement = unitTestElement.Descendants(ns + "Owner").FirstOrDefault();
+
+            if (ownerElement != null)
+            {
+                XAttribute ownerAttribute = ownerElement.Attribute("name");
+                owner = ownerAttribute.Value;
+            }
+
+            return owner;
         }
     }
 
@@ -150,20 +157,6 @@ namespace MSTestAllureAdapter
             if (element != null && element.Attribute(attributeName) != null)
             {
                 result = element.Attribute(attributeName).Value;
-            }
-
-            return result;
-        }
-
-        public static TimeSpan ParseDuration(this XElement element, string attributeName)
-        {
-            TimeSpan result = new TimeSpan(0);
-
-            XAttribute attribute = element.Attribute(attributeName);
-
-            if (attribute != null)
-            {
-                result = TimeSpan.Parse(attribute.Value);
             }
 
             return result;
