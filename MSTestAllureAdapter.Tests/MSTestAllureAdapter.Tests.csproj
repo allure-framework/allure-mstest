@@ -35,12 +35,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TRXParserTests.cs" />
+    <Compile Include="ConsoleTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\MSTestAllureAdapter\MSTestAllureAdapter.csproj">
       <Project>{9CED0C38-BCEB-4BFC-9294-38455758A461}</Project>
       <Name>MSTestAllureAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSTestAllureAdapter.Console\MSTestAllureAdapter.Console.csproj">
+      <Project>{808195D1-424C-48E0-A40F-3F93B7CC2F3C}</Project>
+      <Name>MSTestAllureAdapter.Console</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -49,5 +54,8 @@
     </None>
     <None Include="packages.config" />
     <None Include="results-example-mstest.trx" />
+    <None Include="InvalidFile.trx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
