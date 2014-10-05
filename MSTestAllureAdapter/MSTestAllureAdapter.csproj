@@ -42,7 +42,6 @@
     <Compile Include="AllureEvents\TestSuiteFinishedWithTimeEvent.cs" />
     <Compile Include="Utils\AllureResultsUtils.cs" />
     <Compile Include="AllureEvents\TestCaseFailureWithErrorInfoEvent.cs" />
-    <Compile Include="AllureAdapterBase.cs" />
     <Compile Include="AllureAdapter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
