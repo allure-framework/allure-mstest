@@ -11,6 +11,10 @@ namespace MSTestAllureAdapter
     /// <summary>
     /// The base class for the Allure adapter.
     /// </summary>
+    /// <remarks>
+    /// The reason AllureAdapter and AllureAdapterBase are seperated is to 
+    /// express the TestStarted -> HandleTestResult -> TestSuitFinished template.
+    /// </remarks>
     public abstract class AllureAdapterBase
     {
         static AllureAdapterBase()
@@ -116,6 +120,12 @@ namespace MSTestAllureAdapter
                 ownerLabel.value = testResult.Owner;
 
                 testCase.Labels = new label[]{ ownerLabel };
+
+                // allure doesnt support custom labels so until issue #394 is solved
+                // the test description is used.
+                //
+                // https://github.com/allure-framework/allure-core/issues/394
+
                 testCase.Description = new description { type = descriptiontype.text, Value = "Test Owner: " + testResult.Owner };
             }
 
