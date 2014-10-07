@@ -88,15 +88,29 @@ namespace MSTestAllureAdapter.Tests
                 string expectedFile = expected[category];
                 string actualFile = actual[category];
 
-                XmlInput control = new XmlInput(File.ReadAllText(expectedFile));
-                XmlInput test = new XmlInput(File.ReadAllText(actualFile));
+                string expectedFileText = File.ReadAllText(expectedFile);
+                string actualFileText = File.ReadAllText(actualFile);
+
+                XmlInput control = new XmlInput(expectedFileText);
+                XmlInput test = new XmlInput(actualFileText);
                 
                 XmlDiff xmlDiff = new XmlDiff(control, test);
                 
                 DiffResult diffResult = xmlDiff.Compare();
                 if (!diffResult.Identical)
                 {
-                    Assert.Fail("The expected file {0} was different from the actual file {1}", expectedFile, actualFile);
+                    string failureMessage = String.Format("The expected file {0} was different from the actual file {1}", expectedFile, actualFile);
+                    failureMessage += Environment.NewLine;
+                    failureMessage += "Expected XML: ";
+                    failureMessage += expectedFileText;
+                    failureMessage += Environment.NewLine;
+                    failureMessage += "Actual XML: ";
+                    failureMessage += actualFileText;
+                    failureMessage += Environment.NewLine;
+                    failureMessage += "Difference: ";
+                    failureMessage += diffResult.Difference;
+
+                    Assert.Fail(failureMessage);
                 }
             }
         }
