@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1411457531473" stop="1411457531473" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+  <test-cases xmlns="">
+    <test-case start="1411457531473" stop="1411457531473" status="passed">
+      <name>Test_Without_Category</name>
+    </test-case>
+    <test-case start="1411457531473" stop="1411457531473" status="failed">
+      <name>SimpleFailingTest</name>
+      <description>Test Owner: OwnerOfFailingTest</description>
+      <failure>
+        <message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</message>
+        <stack-trace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in c:\SampleTRXParsing\SampleTestingProject\UnitTest1.cs:line 45
+</stack-trace>
+      </failure>
+      <labels>
+        <label name="Owner" value="OwnerOfFailingTest" />
+      </labels>
+    </test-case>
+    <test-case start="1411457531473" stop="1411457531473" status="passed">
+      <name>ExpectedException</name>
+    </test-case>
+    <test-case start="1411457531473" stop="1411457531473" status="passed">
+      <name>ExpectedExceptionWithNoExceptionMessage</name>
+    </test-case>
+    <test-case start="1411457531473" stop="1411457531473" status="failed">
+      <name>UnexpectedException</name>
+      <failure>
+        <message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 
+System.Exception: Exception of type 'System.Exception' was thrown.</message>
+        <stack-trace>    at SampleTestingProject.UnitTest1.UnexpectedException() in c:\SampleTRXParsing\SampleTestingProject\UnitTest1.cs:line 71
+</stack-trace>
+      </failure>
+    </test-case>
+  </test-cases>
+</test-suite>

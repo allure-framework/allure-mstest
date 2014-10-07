@@ -45,6 +45,11 @@ namespace MSTestAllureAdapter
         {
             string originalResultsPath = AllureConfig.ResultsPath;
 
+            if (!resultsPath.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()))
+            {
+                resultsPath += System.IO.Path.DirectorySeparatorChar;
+            }
+
             AllureConfig.ResultsPath = resultsPath;
 
             try

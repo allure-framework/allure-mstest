@@ -6,47 +6,31 @@ using System.Text;
 
 namespace MSTestAllureAdapter.Tests
 {
-    [TestFixture()]
-    public class TRXParserTests
+    [TestFixture]
+    public class TRXParserTests : MSTestAllureAdapterTestBase
     {
         private IEnumerable<MSTestResult> mTestResults;
 
-        private IDictionary<string, MSTestResult> mExpectedTestsResultsMap = new Dictionary<string, MSTestResult>
-        { 
-            { "TestMethod1", new MSTestResult("", TestOutcome.Passed, "Category1") },
-            { "TestMethod2", new MSTestResult("", TestOutcome.Passed, "Category1", "Category2") },
-            { "TestMethod3", new MSTestResult("", TestOutcome.Passed, "Category2") },
-            { "Test_Without_Category", new MSTestResult("", TestOutcome.Passed) },
-            { "SimpleFailingTest", new MSTestResult("", TestOutcome.Failed) },
-            { "ExpectedException", new MSTestResult("", TestOutcome.Passed) },
-            { "ExpectedExceptionWithNoExceptionMessage", new MSTestResult("", TestOutcome.Passed) },
-            { "UnexpectedException", new MSTestResult("", TestOutcome.Failed) }
-        };
-
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            mExpectedTestsResultsMap["TestMethod1"].Owner = "Owner1";
-            mExpectedTestsResultsMap["TestMethod2"].Owner = "Owner2";
-            mExpectedTestsResultsMap["TestMethod3"].Owner = "Owner1";
-            mExpectedTestsResultsMap["SimpleFailingTest"].Owner = "OwnerOfFailingTest";
+            base.SetUp();
 
             TRXParser parser = new TRXParser();
 
             mTestResults = parser.GetTestResults("sample.trx");
         }
 
-
         [Test]
         public void ExpectedNumberOfTestsWereFound()
         {
-            Assert.AreEqual(mExpectedTestsResultsMap.Keys.Count, mTestResults.Count());
+            Assert.AreEqual(ExpectedTestsResultsMap.Keys.Count, mTestResults.Count());
         }
 
         [Test]
         public void AllTestsWereFound()
         {
-            IEnumerable<string> expected = mExpectedTestsResultsMap.Keys;
+            IEnumerable<string> expected = ExpectedTestsResultsMap.Keys;
             IEnumerable<string> found = mTestResults.Select(testResult => testResult.Name);
 
             EnumerableDiffResult result = EnumerableDiff(expected, found);
@@ -59,7 +43,7 @@ namespace MSTestAllureAdapter.Tests
         {
             foreach (MSTestResult testResult in mTestResults)
             {
-                IEnumerable<string> expected = mExpectedTestsResultsMap[testResult.Name].Suites;
+                IEnumerable<string> expected = ExpectedTestsResultsMap[testResult.Name].Suites;
                 IEnumerable<string> found = testResult.Suites;
                 
                 EnumerableDiffResult result = EnumerableDiff(expected, found);
@@ -76,7 +60,7 @@ namespace MSTestAllureAdapter.Tests
         {
             foreach (MSTestResult testResult in mTestResults)
             {
-                TestOutcome expected = mExpectedTestsResultsMap[testResult.Name].Outcome;
+                TestOutcome expected = ExpectedTestsResultsMap[testResult.Name].Outcome;
                 TestOutcome actual = testResult.Outcome;
 
                 if (expected != actual)
@@ -91,7 +75,7 @@ namespace MSTestAllureAdapter.Tests
         {
             foreach (MSTestResult testResult in mTestResults)
             {
-                string expected = mExpectedTestsResultsMap[testResult.Name].Owner;
+                string expected = ExpectedTestsResultsMap[testResult.Name].Owner;
                 string actual = testResult.Owner;
 
                 if (String.Compare(expected, actual, true) != 0)
@@ -120,18 +104,18 @@ namespace MSTestAllureAdapter.Tests
             string message = String.Empty;
 
             if (missing.Count > 0)
-                {
-                    message += "The following items were not found: ";
-                    message += String.Join(", ", missing.Select( _ => "'" + _ + "'"));
-                    message += Environment.NewLine;
-                }
+            {
+                message += "The following items were not found: ";
+                message += String.Join(", ", missing.Select( _ => "'" + _ + "'"));
+                message += Environment.NewLine;
+            }
 
             if (notExpected.Count > 0)
-                {
-                    message += "The following items were not expected: ";
-                    message += String.Join(", ", notExpected.Select( _ => "'" + _ + "'"));
-                    message += Environment.NewLine;
-                }
+            {
+                message += "The following items were not expected: ";
+                message += String.Join(", ", notExpected.Select( _ => "'" + _ + "'"));
+                message += Environment.NewLine;
+            }
 
             return new EnumerableDiffResult(missing.Count + notExpected.Count, message);
         }

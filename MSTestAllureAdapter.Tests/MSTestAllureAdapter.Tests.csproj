@@ -32,10 +32,20 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="xunit">
+      <HintPath>..\packages\xunit.1.8.0.1545\lib\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="XmlUnit.Xunit">
+      <HintPath>..\packages\XmlUnit.Xunit.0.4\lib\net40\XmlUnit.Xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TRXParserTests.cs" />
     <Compile Include="ConsoleTests.cs" />
+    <Compile Include="MSTestAllureAdapterTestBase.cs" />
+    <Compile Include="GeneratedReportTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -53,9 +63,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="results-example-mstest.trx" />
     <None Include="InvalidFile.trx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="xsd\allure.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="sample-output\Category1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="sample-output\Category2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="sample-output\NoCategory.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="xsd\" />
+    <Folder Include="sample-output\" />
   </ItemGroup>
 </Project>
