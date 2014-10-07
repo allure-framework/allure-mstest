@@ -79,9 +79,9 @@ namespace MSTestAllureAdapter
 
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
 
-            DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value);
+            DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value).ToUniversalTime();
 
-            DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
+            DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value).ToUniversalTime();
 
             string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
                                             select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();

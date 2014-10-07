@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1411457531473" stop="1411457531473" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1411446731473" stop="1411446731473" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <test-cases xmlns="">
-    <test-case start="1411457531473" stop="1411457531473" status="passed">
+    <test-case start="1411446731473" stop="1411446731473" status="passed">
       <name>Test_Without_Category</name>
     </test-case>
-    <test-case start="1411457531473" stop="1411457531473" status="failed">
+    <test-case start="1411446731473" stop="1411446731473" status="failed">
       <name>SimpleFailingTest</name>
       <description>Test Owner: OwnerOfFailingTest</description>
       <failure>
@@ -16,13 +16,13 @@
         <label name="Owner" value="OwnerOfFailingTest" />
       </labels>
     </test-case>
-    <test-case start="1411457531473" stop="1411457531473" status="passed">
+    <test-case start="1411446731473" stop="1411446731473" status="passed">
       <name>ExpectedException</name>
     </test-case>
-    <test-case start="1411457531473" stop="1411457531473" status="passed">
+    <test-case start="1411446731473" stop="1411446731473" status="passed">
       <name>ExpectedExceptionWithNoExceptionMessage</name>
     </test-case>
-    <test-case start="1411457531473" stop="1411457531473" status="failed">
+    <test-case start="1411446731473" stop="1411446731473" status="failed">
       <name>UnexpectedException</name>
       <failure>
         <message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 

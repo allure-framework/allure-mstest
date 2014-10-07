@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1411457531442" stop="1411457531473" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1411446731442" stop="1411446731473" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <name xmlns="">Category1</name>
   <test-cases xmlns="">
-    <test-case start="1411457531442" stop="1411457531457" status="passed">
+    <test-case start="1411446731442" stop="1411446731457" status="passed">
       <name>TestMethod1</name>
       <description>Test Owner: Owner1</description>
       <labels>
         <label name="Owner" value="Owner1" />
       </labels>
     </test-case>
-    <test-case start="1411457531473" stop="1411457531473" status="passed">
+    <test-case start="1411446731473" stop="1411446731473" status="passed">
       <name>TestMethod2</name>
       <description>Test Owner: Owner2</description>
       <labels>

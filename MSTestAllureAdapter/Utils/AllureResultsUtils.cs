@@ -10,7 +10,7 @@ namespace MSTestAllureAdapter
     {
         public static long ToUnixEpochTime(this DateTime time)
         {
-            return (long) (time - new DateTime(1970, 1, 1)).TotalMilliseconds;
+            return (long) (time - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
         }
     }
 }
