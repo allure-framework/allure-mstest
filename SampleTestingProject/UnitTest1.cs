@@ -7,7 +7,7 @@ namespace SampleTestingProject
     public class UnitTest1
     {
         [TestMethod]
-        [TestCategory("Catehory1")]
+        [TestCategory("Category1")]
         [Owner("Owner1")]
         public void TestMethod1()
         {
@@ -15,7 +15,8 @@ namespace SampleTestingProject
         }
 
         [TestMethod]
-        [TestCategory("Catehory2")]
+        [TestCategory("Category1")]
+        [TestCategory("Category2")]
         [Owner("Owner1")]
         public void TestMethod2()
         {
@@ -23,8 +24,7 @@ namespace SampleTestingProject
         }
 
         [TestMethod]
-        [TestCategory("Catehory1")]
-        [TestCategory("Catehory2")]
+        [TestCategory("Category2")]
         [Owner("Owner1")]
         public void TestMethod3()
         {
@@ -37,16 +37,12 @@ namespace SampleTestingProject
             Assert.IsTrue(true);
         }
 
-        [TestCategory("Catehory3")]
-        [Owner("Owner2")]
         [TestMethod]
         public void SimpleFailingTest()
         {
             Assert.AreEqual<int>(1, 2, "The calculation failed.");
         }
 
-        [TestCategory("Catehory3")]
-        [Owner("Owner2")]
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ExpectedException()
@@ -54,7 +50,6 @@ namespace SampleTestingProject
             throw new ArgumentOutOfRangeException("value", "This value cannot be set to the specified range.");
         }
 
-        [TestCategory("Catehory3")]
         [Owner("Owner2")]
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Expected ArgumentOutOfRangeException was not fired.")]
@@ -63,7 +58,6 @@ namespace SampleTestingProject
             throw new ArgumentOutOfRangeException("value", "This value cannot be set to the specified range.");
         }
 
-        [TestCategory("Catehory3")]
         [Owner("Owner2")]
         [TestMethod]
         public void UnexpectedException()
@@ -81,6 +75,8 @@ namespace SampleTestingProject
         //[DataSource("Microsoft.Visualstudio.TestTools.DataSource.CSV", "|DataDirectory|\\UserData.csv", "UserData#csv", Microsoft.VisualStudio.TestTools.UnitTesting.DataAccessMethod.Sequential)]
         [DataSource("System.Data.OleDb", "Provider=Microsoft.Jet.OLEDB.4.0;Data Source='|DataDirectory|';Extended Properties=\"text;HDR=Yes;FMT=Delimited\"", "UserData#csv", Microsoft.VisualStudio.TestTools.UnitTesting.DataAccessMethod.Sequential)]
         [DeploymentItem("UserData.csv")]
+        [TestCategory("Category3")]
+        [Owner("Owner3")]
         [TestMethod]
         public void CSVdataDrivenTest()
         {
