@@ -70,5 +70,26 @@ namespace SampleTestingProject
         {
             throw new Exception();
         }
+
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
+        //[DataSource("Microsoft.Visualstudio.TestTools.DataSource.CSV", "|DataDirectory|\\UserData.csv", "UserData#csv", Microsoft.VisualStudio.TestTools.UnitTesting.DataAccessMethod.Sequential)]
+        [DataSource("System.Data.OleDb", "Provider=Microsoft.Jet.OLEDB.4.0;Data Source='|DataDirectory|';Extended Properties=\"text;HDR=Yes;FMT=Delimited\"", "UserData#csv", Microsoft.VisualStudio.TestTools.UnitTesting.DataAccessMethod.Sequential)]
+        [DeploymentItem("UserData.csv")]
+        [TestMethod]
+        public void CSVdataDrivenTest()
+        {
+            int a = Convert.ToInt32(TestContext.DataRow["Operator 1"]);
+            int b = Convert.ToInt32(TestContext.DataRow["Operator 2"]);
+            int expected = Convert.ToInt32(TestContext.DataRow["Outcome"]);
+
+            int actual = a / b;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
