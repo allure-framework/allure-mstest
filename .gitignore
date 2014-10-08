@@ -32,6 +32,7 @@ ehthumbs.db
 Desktop.ini
 
 MSTestAllureAdapter/bin
+MSTestAllureAdapter/obj
 MSTestAllureAdapter.Console/bin
 MSTestAllureAdapter.Console/obj
 MSTestAllureAdapter.Tests/bin
