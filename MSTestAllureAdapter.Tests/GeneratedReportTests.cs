@@ -57,7 +57,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        public void Match_Categories()
+        public void CompareExpectedXMLs()
         {
             Dictionary<string, string> expected = new Dictionary<string, string>();
             Dictionary<string, string> actual = new Dictionary<string, string>();
