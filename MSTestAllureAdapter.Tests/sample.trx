@@ -1,111 +1,165 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestRun id="b6519732-3c9f-4a9f-9148-a8a55c1108b4" name="net@NET-PC 2014-09-23 07:32:11" runUser="net-PC\net" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Times creation="2014-09-23T07:32:11.5200553+03:00" queuing="2014-09-23T07:32:11.5200553+03:00" start="2014-09-23T07:32:11.5200553+03:00" finish="2014-09-23T07:32:11.5668554+03:00" />
-  <TestSettings name="default" id="d514935b-1b29-4f82-b56f-586fcd13c78e">
+<TestRun id="a0212d07-7583-4925-b67f-e951b81ff121" name="chen@CHEN-5DA849B0B8 2014-10-08 04:28:12" runUser="CHEN-5DA849B0B8\chen" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="0115d5ea-c57f-44dc-b1f6-2654bbcf5e46">
     <Execution>
       <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
     </Execution>
-    <Deployment runDeploymentRoot="net_NET-PC 2014-09-23 07_32_11" />
-    <Properties />
+    <Deployment runDeploymentRoot="chen_CHEN-5DA849B0B8 2014-10-08 04_28_12" />
   </TestSettings>
-  <Results>
-    <UnitTestResult executionId="3d521509-bd64-490d-9583-a49c0ed4cb9e" testId="07615eb7-235a-11a1-4f45-a06cb4d2655e" testName="TestMethod1" computerName="NET-PC" duration="00:00:00.0025330" startTime="2014-09-23T07:32:11.4420552+03:00" endTime="2014-09-23T07:32:11.4576552+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d521509-bd64-490d-9583-a49c0ed4cb9e" />
-    <UnitTestResult executionId="363853e4-f887-4ccd-ae09-0f625112e02e" testId="310ffa11-b40e-2240-f06c-82c2271155b4" testName="TestMethod2" computerName="NET-PC" duration="00:00:00.0000528" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="363853e4-f887-4ccd-ae09-0f625112e02e" />
-    <UnitTestResult executionId="618445ca-9d2c-4bc2-9113-d88c5061c786" testId="12fb41d8-85fc-cbfb-1138-28f3c6818cfe" testName="TestMethod3" computerName="NET-PC" duration="00:00:00.0000457" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="618445ca-9d2c-4bc2-9113-d88c5061c786" />
-    <UnitTestResult executionId="cbb64ca6-d570-44bf-8757-3f14abbce272" testId="6d9ba31f-d04e-ca7c-117e-e3ae63682e8c" testName="Test_Without_Category" computerName="NET-PC" duration="00:00:00.0000438" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cbb64ca6-d570-44bf-8757-3f14abbce272" />
-    <UnitTestResult executionId="e54c48d0-80c1-4890-9641-807adf4165ce" testId="85da7ce7-0103-9d79-7dcd-cae058b187f7" testName="SimpleFailingTest" computerName="NET-PC" duration="00:00:00.0062346" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e54c48d0-80c1-4890-9641-807adf4165ce">
-      <Output>
-        <ErrorInfo>
-          <Message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</Message>
-          <StackTrace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in c:\SampleTRXParsing\SampleTestingProject\UnitTest1.cs:line 45
-</StackTrace>
-        </ErrorInfo>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="9ceba3ec-4662-44bd-acfe-a9b027bde093" testId="4ace2228-cdf5-77fd-07cf-6e991fda6378" testName="ExpectedException" computerName="NET-PC" duration="00:00:00.0007457" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9ceba3ec-4662-44bd-acfe-a9b027bde093" />
-    <UnitTestResult executionId="2872bf7c-b4cf-433d-a533-196926254994" testId="dacd4483-d4cd-37bd-b0a3-0d9e21e7f05b" testName="ExpectedExceptionWithNoExceptionMessage" computerName="NET-PC" duration="00:00:00.0003299" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2872bf7c-b4cf-433d-a533-196926254994" />
-    <UnitTestResult executionId="18e037c7-75f8-41bc-baf6-d7351fbc1de6" testId="0903142e-3577-4526-1d01-349552708fe1" testName="UnexpectedException" computerName="NET-PC" duration="00:00:00.0015941" startTime="2014-09-23T07:32:11.4732553+03:00" endTime="2014-09-23T07:32:11.4732553+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="18e037c7-75f8-41bc-baf6-d7351fbc1de6">
-      <Output>
-        <ErrorInfo>
-          <Message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 
-System.Exception: Exception of type 'System.Exception' was thrown.</Message>
-          <StackTrace>    at SampleTestingProject.UnitTest1.UnexpectedException() in c:\SampleTRXParsing\SampleTestingProject\UnitTest1.cs:line 71
-</StackTrace>
-        </ErrorInfo>
-      </Output>
-    </UnitTestResult>
-  </Results>
+  <Times creation="2014-10-08T03:28:12.2856072-08:00" queuing="2014-10-08T20:28:12.3456936-08:00" start="2014-10-08T20:28:12.4508448-08:00" finish="2014-10-08T20:28:13.0667304-08:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="12" executed="12" passed="8" error="0" failed="4" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
   <TestDefinitions>
-    <UnitTest name="TestMethod1" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="07615eb7-235a-11a1-4f45-a06cb4d2655e">
+    <UnitTest name="UnexpectedException" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="d674ff52-3f70-f86a-175f-82b808dbb7f4">
       <Owners>
-      	<Owner name="Owner1" />
+        <Owner name="Owner2" />
       </Owners>
       <TestCategory>
-      	<TestCategoryItem TestCategory="Category1" />
+        <TestCategoryItem TestCategory="Catehory3" />
       </TestCategory>
-      <Execution id="3d521509-bd64-490d-9583-a49c0ed4cb9e" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod1" />
+      <Execution id="bd24dcd7-da65-4f01-bae7-51114168b291" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="UnexpectedException" />
     </UnitTest>
-    <UnitTest name="TestMethod2" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="310ffa11-b40e-2240-f06c-82c2271155b4">
+    <UnitTest name="ExpectedExceptionWithNoExceptionMessage" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="526e1b3d-753a-43d5-48f2-d10e51871ff5">
       <Owners>
-      	<Owner name="Owner2" />
+        <Owner name="Owner2" />
       </Owners>
       <TestCategory>
-      	<TestCategoryItem TestCategory="Category1" />
-      	<TestCategoryItem TestCategory="Category2" />
+        <TestCategoryItem TestCategory="Catehory3" />
       </TestCategory>
-      <Execution id="363853e4-f887-4ccd-ae09-0f625112e02e" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod2" />
+      <Execution id="c52ff01f-69d2-478d-8466-2acbf54446a1" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ExpectedExceptionWithNoExceptionMessage" />
     </UnitTest>
-    <UnitTest name="TestMethod3" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="12fb41d8-85fc-cbfb-1138-28f3c6818cfe">
+    <UnitTest name="TestMethod3" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="45580bf9-196c-8a24-b157-8ffbe57ed5b7">
       <Owners>
-      	<Owner name="Owner1" />
+        <Owner name="Owner1" />
       </Owners>
       <TestCategory>
-      	<TestCategoryItem TestCategory="Category2" />
+        <TestCategoryItem TestCategory="Catehory2" />
+        <TestCategoryItem TestCategory="Catehory1" />
       </TestCategory>
-      <Execution id="618445ca-9d2c-4bc2-9113-d88c5061c786" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="TestMethod3" />
+      <Execution id="ba76eb2f-db3b-49e6-8814-5e610b3ef05f" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod3" />
     </UnitTest>
-    <UnitTest name="Test_Without_Category" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="6d9ba31f-d04e-ca7c-117e-e3ae63682e8c">
-      <Execution id="cbb64ca6-d570-44bf-8757-3f14abbce272" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="Test_Without_Category" />
-    </UnitTest>
-    <UnitTest name="SimpleFailingTest" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="85da7ce7-0103-9d79-7dcd-cae058b187f7">
+    <UnitTest name="SimpleFailingTest" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="37767e2b-ed05-6fcc-1743-b47b28543eff">
       <Owners>
-      	<Owner name="OwnerOfFailingTest" />
+        <Owner name="Owner2" />
       </Owners>
-      <Execution id="e54c48d0-80c1-4890-9641-807adf4165ce" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="SimpleFailingTest" />
+      <TestCategory>
+        <TestCategoryItem TestCategory="Catehory3" />
+      </TestCategory>
+      <Execution id="27f23b6e-40a3-4b26-8db9-888d205c25c6" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SimpleFailingTest" />
     </UnitTest>
-    <UnitTest name="ExpectedException" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="4ace2228-cdf5-77fd-07cf-6e991fda6378">
-      <Execution id="9ceba3ec-4662-44bd-acfe-a9b027bde093" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="ExpectedException" />
+    <UnitTest name="CSVdataDrivenTest" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="e5f568ed-0e68-9d9c-05cd-bed630f97126">
+      <DeploymentItems>
+        <DeploymentItem filename="UserData.csv" />
+      </DeploymentItems>
+      <Execution id="1b4d539a-c85d-47c2-9166-f539ff05a978" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CSVdataDrivenTest" />
+      <DataSource connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source='|DataDirectory|';Extended Properties=&quot;text;HDR=Yes;FMT=Delimited&quot;" providerInvariantName="System.Data.OleDb" tableName="UserData#csv" />
     </UnitTest>
-    <UnitTest name="ExpectedExceptionWithNoExceptionMessage" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="dacd4483-d4cd-37bd-b0a3-0d9e21e7f05b">
-      <Execution id="2872bf7c-b4cf-433d-a533-196926254994" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="ExpectedExceptionWithNoExceptionMessage" />
+    <UnitTest name="Test_Without_Category" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="1a397e66-843f-85e6-a2bc-c6770c860df9">
+      <Execution id="c60e8e06-b45c-4769-9716-28c2fefae829" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Without_Category" />
     </UnitTest>
-    <UnitTest name="UnexpectedException" storage="c:\sampletrxparsing\sampletestingproject\bin\debug\sampletestingproject.dll" id="0903142e-3577-4526-1d01-349552708fe1">
-      <Execution id="18e037c7-75f8-41bc-baf6-d7351fbc1de6" />
-      <TestMethod codeBase="C:\SampleTRXParsing\SampleTestingProject\bin\Debug\SampleTestingProject.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="SampleTestingProject.UnitTest1" name="UnexpectedException" />
+    <UnitTest name="TestMethod1" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="1355d0e5-4bac-c245-d7ad-af9f0f4d2e03">
+      <Owners>
+        <Owner name="Owner1" />
+      </Owners>
+      <TestCategory>
+        <TestCategoryItem TestCategory="Catehory1" />
+      </TestCategory>
+      <Execution id="5fc9e948-4103-4899-91bd-0bd94f81f60a" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+    <UnitTest name="TestMethod2" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="a2fb4c92-911b-2d47-f297-5f446c1ae75e">
+      <Owners>
+        <Owner name="Owner1" />
+      </Owners>
+      <TestCategory>
+        <TestCategoryItem TestCategory="Catehory2" />
+      </TestCategory>
+      <Execution id="7243fb39-7542-4daf-99a7-2caf7f1f5a91" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod2" />
+    </UnitTest>
+    <UnitTest name="ExpectedException" storage="c:\documents and settings\chen\mstestallureadapter\sampletestingproject\bin\debug\sampletestingproject.dll" id="0d2325b1-3073-18e7-d060-dc4d5ce5a01f">
+      <Owners>
+        <Owner name="Owner2" />
+      </Owners>
+      <TestCategory>
+        <TestCategoryItem TestCategory="Catehory3" />
+      </TestCategory>
+      <Execution id="b035060b-96dc-4c8d-90e2-78007575e5b7" />
+      <TestMethod codeBase="C:/Documents and Settings/chen/MSTestAllureAdapter/SampleTestingProject/bin/Debug/SampleTestingProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SampleTestingProject.UnitTest1, SampleTestingProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ExpectedException" />
     </UnitTest>
   </TestDefinitions>
-  <TestEntries>
-    <TestEntry testId="07615eb7-235a-11a1-4f45-a06cb4d2655e" executionId="3d521509-bd64-490d-9583-a49c0ed4cb9e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="310ffa11-b40e-2240-f06c-82c2271155b4" executionId="363853e4-f887-4ccd-ae09-0f625112e02e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="12fb41d8-85fc-cbfb-1138-28f3c6818cfe" executionId="618445ca-9d2c-4bc2-9113-d88c5061c786" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="6d9ba31f-d04e-ca7c-117e-e3ae63682e8c" executionId="cbb64ca6-d570-44bf-8757-3f14abbce272" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="85da7ce7-0103-9d79-7dcd-cae058b187f7" executionId="e54c48d0-80c1-4890-9641-807adf4165ce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="4ace2228-cdf5-77fd-07cf-6e991fda6378" executionId="9ceba3ec-4662-44bd-acfe-a9b027bde093" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="dacd4483-d4cd-37bd-b0a3-0d9e21e7f05b" executionId="2872bf7c-b4cf-433d-a533-196926254994" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="0903142e-3577-4526-1d01-349552708fe1" executionId="18e037c7-75f8-41bc-baf6-d7351fbc1de6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-  </TestEntries>
   <TestLists>
     <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
     <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
   </TestLists>
-  <ResultSummary outcome="Failed">
-    <Counters total="8" executed="8" passed="6" failed="2" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
-  </ResultSummary>
+  <TestEntries>
+    <TestEntry testId="1355d0e5-4bac-c245-d7ad-af9f0f4d2e03" executionId="5fc9e948-4103-4899-91bd-0bd94f81f60a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a2fb4c92-911b-2d47-f297-5f446c1ae75e" executionId="7243fb39-7542-4daf-99a7-2caf7f1f5a91" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="45580bf9-196c-8a24-b157-8ffbe57ed5b7" executionId="ba76eb2f-db3b-49e6-8814-5e610b3ef05f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a397e66-843f-85e6-a2bc-c6770c860df9" executionId="c60e8e06-b45c-4769-9716-28c2fefae829" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="37767e2b-ed05-6fcc-1743-b47b28543eff" executionId="27f23b6e-40a3-4b26-8db9-888d205c25c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0d2325b1-3073-18e7-d060-dc4d5ce5a01f" executionId="b035060b-96dc-4c8d-90e2-78007575e5b7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="526e1b3d-753a-43d5-48f2-d10e51871ff5" executionId="c52ff01f-69d2-478d-8466-2acbf54446a1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d674ff52-3f70-f86a-175f-82b808dbb7f4" executionId="bd24dcd7-da65-4f01-bae7-51114168b291" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e5f568ed-0e68-9d9c-05cd-bed630f97126" executionId="1b4d539a-c85d-47c2-9166-f539ff05a978" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="5fc9e948-4103-4899-91bd-0bd94f81f60a" testId="1355d0e5-4bac-c245-d7ad-af9f0f4d2e03" testName="TestMethod1" computerName="CHEN-5DA849B0B8" duration="00:00:00.0137849" startTime="2014-10-08T03:28:12.4959096-08:00" endTime="2014-10-08T03:28:12.7362552-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5fc9e948-4103-4899-91bd-0bd94f81f60a">
+    </UnitTestResult>
+    <UnitTestResult executionId="7243fb39-7542-4daf-99a7-2caf7f1f5a91" testId="a2fb4c92-911b-2d47-f297-5f446c1ae75e" testName="TestMethod2" computerName="CHEN-5DA849B0B8" duration="00:00:00.0005673" startTime="2014-10-08T03:28:12.7512768-08:00" endTime="2014-10-08T03:28:12.7512768-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7243fb39-7542-4daf-99a7-2caf7f1f5a91">
+    </UnitTestResult>
+    <UnitTestResult executionId="ba76eb2f-db3b-49e6-8814-5e610b3ef05f" testId="45580bf9-196c-8a24-b157-8ffbe57ed5b7" testName="TestMethod3" computerName="CHEN-5DA849B0B8" duration="00:00:00.0005523" startTime="2014-10-08T03:28:12.7512768-08:00" endTime="2014-10-08T03:28:12.7662984-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ba76eb2f-db3b-49e6-8814-5e610b3ef05f">
+    </UnitTestResult>
+    <UnitTestResult executionId="c60e8e06-b45c-4769-9716-28c2fefae829" testId="1a397e66-843f-85e6-a2bc-c6770c860df9" testName="Test_Without_Category" computerName="CHEN-5DA849B0B8" duration="00:00:00.0013308" startTime="2014-10-08T03:28:12.7662984-08:00" endTime="2014-10-08T03:28:12.7662984-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c60e8e06-b45c-4769-9716-28c2fefae829">
+    </UnitTestResult>
+    <UnitTestResult executionId="27f23b6e-40a3-4b26-8db9-888d205c25c6" testId="37767e2b-ed05-6fcc-1743-b47b28543eff" testName="SimpleFailingTest" computerName="CHEN-5DA849B0B8" duration="00:00:00.0159520" startTime="2014-10-08T03:28:12.7813200-08:00" endTime="2014-10-08T03:28:12.7963416-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27f23b6e-40a3-4b26-8db9-888d205c25c6">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</Message>
+          <StackTrace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in C:\Documents and Settings\chen\MSTestAllureAdapter\SampleTestingProject\UnitTest1.cs:line 45
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b035060b-96dc-4c8d-90e2-78007575e5b7" testId="0d2325b1-3073-18e7-d060-dc4d5ce5a01f" testName="ExpectedException" computerName="CHEN-5DA849B0B8" duration="00:00:00.0010032" startTime="2014-10-08T03:28:12.8113632-08:00" endTime="2014-10-08T03:28:12.8263848-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b035060b-96dc-4c8d-90e2-78007575e5b7">
+    </UnitTestResult>
+    <UnitTestResult executionId="c52ff01f-69d2-478d-8466-2acbf54446a1" testId="526e1b3d-753a-43d5-48f2-d10e51871ff5" testName="ExpectedExceptionWithNoExceptionMessage" computerName="CHEN-5DA849B0B8" duration="00:00:00.0071414" startTime="2014-10-08T03:28:12.8263848-08:00" endTime="2014-10-08T03:28:12.8564280-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c52ff01f-69d2-478d-8466-2acbf54446a1">
+    </UnitTestResult>
+    <UnitTestResult executionId="bd24dcd7-da65-4f01-bae7-51114168b291" testId="d674ff52-3f70-f86a-175f-82b808dbb7f4" testName="UnexpectedException" computerName="CHEN-5DA849B0B8" duration="00:00:00.0031182" startTime="2014-10-08T03:28:12.8564280-08:00" endTime="2014-10-08T03:28:12.8564280-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bd24dcd7-da65-4f01-bae7-51114168b291">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 
+System.Exception: Exception of type 'System.Exception' was thrown.</Message>
+          <StackTrace>    at SampleTestingProject.UnitTest1.UnexpectedException() in C:\Documents and Settings\chen\MSTestAllureAdapter\SampleTestingProject\UnitTest1.cs:line 71
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1b4d539a-c85d-47c2-9166-f539ff05a978" testId="e5f568ed-0e68-9d9c-05cd-bed630f97126" testName="CSVdataDrivenTest" computerName="CHEN-5DA849B0B8" duration="00:00:00.0777417" startTime="2014-10-08T03:28:12.8714496-08:00" endTime="2014-10-08T03:28:12.9916224-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b4d539a-c85d-47c2-9166-f539ff05a978" resultType="DataDrivenTest">
+      <Counters error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="2" completed="0" inProgress="0" pending="0" />
+      <InnerResults>
+        <UnitTestResult executionId="062548a9-23f5-4047-b04a-27591ae38fc9" parentExecutionId="1b4d539a-c85d-47c2-9166-f539ff05a978" testId="e5f568ed-0e68-9d9c-05cd-bed630f97126" testName="CSVdataDrivenTest" computerName="CHEN-5DA849B0B8" duration="00:00:00.0007310" startTime="2014-10-08T03:28:12.9315360-08:00" endTime="2014-10-08T03:28:12.9315360-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b4d539a-c85d-47c2-9166-f539ff05a978" dataRowInfo="0" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="f749ecb9-e3ed-47b6-9979-848d6df302a6" parentExecutionId="1b4d539a-c85d-47c2-9166-f539ff05a978" testId="e5f568ed-0e68-9d9c-05cd-bed630f97126" testName="CSVdataDrivenTest" computerName="CHEN-5DA849B0B8" duration="00:00:00.0000421" startTime="2014-10-08T03:28:12.9315360-08:00" endTime="2014-10-08T03:28:12.9315360-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b4d539a-c85d-47c2-9166-f539ff05a978" dataRowInfo="1" resultType="DataDrivenDataRow" />
+        <UnitTestResult executionId="a888dffd-3a12-46e2-bd28-356dad359332" parentExecutionId="1b4d539a-c85d-47c2-9166-f539ff05a978" testId="e5f568ed-0e68-9d9c-05cd-bed630f97126" testName="CSVdataDrivenTest" computerName="CHEN-5DA849B0B8" duration="00:00:00.0016876" startTime="2014-10-08T03:28:12.9315360-08:00" endTime="2014-10-08T03:28:12.9465576-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b4d539a-c85d-47c2-9166-f539ff05a978" dataRowInfo="2" resultType="DataDrivenDataRow">
+          <Output>
+            <ErrorInfo>
+              <Message>Test method SampleTestingProject.UnitTest1.CSVdataDrivenTest threw exception: 
+System.DivideByZeroException: Attempted to divide by zero.</Message>
+              <StackTrace>    at SampleTestingProject.UnitTest1.CSVdataDrivenTest() in C:\Documents and Settings\chen\MSTestAllureAdapter\SampleTestingProject\UnitTest1.cs:line 91
+</StackTrace>
+            </ErrorInfo>
+          </Output>
+        </UnitTestResult>
+      </InnerResults>
+    </UnitTestResult>
+  </Results>
 </TestRun>
