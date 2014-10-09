@@ -38,6 +38,10 @@ namespace MSTestAllureAdapter
             Func<XElement, XElement, MSTestResult> resultSelector = CreateMSTestResult;
 
             IEnumerable<MSTestResult> result = unitTests.Join<XElement, XElement, string, MSTestResult>(unitTestResults, outerKeySelector, innerKeySelector, resultSelector);
+             
+            // this will return the flat list of the tests with the inner tests.
+            // here a test 'parent' that holds other tests will be discarded.
+            result = result.EnumerateTestResults().ToArray();
 
             return result;
         }
@@ -48,27 +52,28 @@ namespace MSTestAllureAdapter
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             xmlNamespaceManager.AddNamespace("prefix", TrxNamespace.NamespaceName);
 
-            ErrorInfo errorInfo = new ErrorInfo();
-
+            string message = null;
             XElement messageElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:Message", xmlNamespaceManager);
             if (messageElement != null)
-                {
-                    errorInfo.Message = messageElement.Value;
-                }
+            {
+                message = messageElement.Value;
+            }
 
+            string stackTrace = null;
             XElement stackTraceElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:StackTrace", xmlNamespaceManager);
             if (stackTraceElement != null)
-                {
-                    errorInfo.StackTrace = stackTraceElement.Value;
-                }
+            {
+                stackTrace = stackTraceElement.Value;
+            }
 
+            string stdOut = null;
             XElement stdOutElement = errorInfoXmlElement.XPathSelectElement("prefix:StdOut", xmlNamespaceManager);
             if (stdOutElement != null)
-                {
-                    errorInfo.StdOut = stdOutElement.Value;
-                }
+            {
+                stdOut = stdOutElement.Value;
+            }
 
-            return errorInfo;
+            return new ErrorInfo(message, stackTrace, stdOut);
         }
 
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
@@ -76,6 +81,10 @@ namespace MSTestAllureAdapter
             XNamespace ns = TrxNamespace;
 
             string testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
+
+            string dataRowInfo = unitTestResult.GetSafeAttributeValue("dataRowInfo");
+
+            testName += dataRowInfo;
 
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
 
@@ -90,7 +99,10 @@ namespace MSTestAllureAdapter
             if (categories.Length == 0)
                 categories = new string[]{ DEFAULT_CATEGORY };
             */
-            MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories);
+
+            IEnumerable<MSTestResult> innerTestResults = ReadInnerTestResults(unitTest, unitTestResult);
+
+            MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories, innerTestResults);
 
             if (outcome == TestOutcome.Error || outcome == TestOutcome.Failed)
             {
@@ -100,6 +112,27 @@ namespace MSTestAllureAdapter
             testResult.Owner = GetOwner(unitTest);
 
             return testResult;
+        }
+
+        private IEnumerable<MSTestResult> ReadInnerTestResults(XElement unitTest, XElement unitTestResult)
+        {
+            XNamespace ns = TrxNamespace;
+            IEnumerable<XElement> innerResultsElements = unitTestResult.Descendants(ns + "InnerResults");
+
+            if (!innerResultsElements.Any())
+                return null;
+
+            // there can be only one.
+            XElement innerResultsElement = innerResultsElements.FirstOrDefault<XElement>();
+
+            IList<MSTestResult> result = new List<MSTestResult>();
+
+            foreach (XElement innerUnitTestResult in innerResultsElement.Descendants(ns + "UnitTestResult"))
+            {
+                result.Add(CreateMSTestResult(unitTest, innerUnitTestResult));
+            }
+
+            return result;
         }
 
         private string GetOwner(XElement unitTestElement)
@@ -168,23 +201,37 @@ namespace MSTestAllureAdapter
     /// </summary>
     public class ErrorInfo
     {
+
+        public ErrorInfo(string message)
+            : this(message, null) { }
+
+        public ErrorInfo(string message, string stackTrace)
+            : this(message, stackTrace, null) { }
+
+        public ErrorInfo(string message, string stackTrace, string stdOut)
+        {
+            Message = message;
+            StackTrace = stackTrace;
+            StdOut = stdOut;
+        }
+
         /// <summary>
         /// Gets or sets the message.
         /// </summary>
         /// <value>The message.</value>
-        public string Message { get; set; }
+        public string Message { get; private set; }
 
         /// <summary>
         /// Gets or sets the stack trace.
         /// </summary>
         /// <value>The stack trace.</value>
-        public string StackTrace { get; set; }
+        public string StackTrace { get; private set; }
 
         /// <summary>
         /// Gets or sets the StdOut.
         /// </summary>
         /// <value>The StdOut.</value>
-        public string StdOut { get; set; }
+        public string StdOut { get; private set; }
 
         public override string ToString()
         {

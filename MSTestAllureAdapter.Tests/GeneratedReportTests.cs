@@ -62,8 +62,6 @@ namespace MSTestAllureAdapter.Tests
             Dictionary<string, string> expected = new Dictionary<string, string>();
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
-
-
             AllureAdapter adapter = new AllureAdapter();
             adapter.GenerateTestResults("sample.trx", mTargetDir);
 
@@ -75,7 +73,7 @@ namespace MSTestAllureAdapter.Tests
 
             if (expected.Keys.Count != actual.Keys.Count)
             {
-                Assert.Fail("The expected {0} categories but found {1}.", expected.Keys.Count, actual.Keys.Count);
+                Assert.Fail("Expected {0} categories but found {1}.", expected.Keys.Count, actual.Keys.Count);
             }
 
             foreach (string category in actual.Keys)

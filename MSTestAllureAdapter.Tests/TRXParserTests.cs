@@ -18,13 +18,13 @@ namespace MSTestAllureAdapter.Tests
 
             TRXParser parser = new TRXParser();
 
-            mTestResults = parser.GetTestResults("sample.trx");
+            mTestResults = parser.GetTestResults("sample.trx").EnumerateTestResults();
         }
 
         [Test]
         public void ExpectedNumberOfTestsWereFound()
         {
-            Assert.AreEqual(ExpectedTestsResultsMap.Keys.Count, mTestResults.Count());
+            Assert.AreEqual(ExpectedTestsResultsMap.Values.EnumerateTestResults().Count(), mTestResults.Count());
         }
 
         [Test]
