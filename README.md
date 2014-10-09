@@ -9,7 +9,9 @@ It is a .NET/Mono based console application.
 
 
 # Usage
+```bash
 MSTestAllureAdapter.Console.exe &lt; TRX file &gt; [output target dir]
+```
 
 If '[output target dir]' is missing the reslts are saved in the current directory in a folder named 'results'.
 
