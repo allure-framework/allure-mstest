@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1411446731473" stop="1411446731473" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1412776229170" stop="1412776229270" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <test-cases xmlns="">
-    <test-case start="1411446731473" stop="1411446731473" status="passed">
-      <name>Test_Without_Category</name>
-    </test-case>
-    <test-case start="1411446731473" stop="1411446731473" status="failed">
-      <name>SimpleFailingTest</name>
-      <description>Test Owner: OwnerOfFailingTest</description>
-      <failure>
-        <message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</message>
-        <stack-trace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in c:\SampleTRXParsing\SampleTestingProject\UnitTest1.cs:line 45
-</stack-trace>
-      </failure>
-      <labels>
-        <label name="Owner" value="OwnerOfFailingTest" />
-      </labels>
-    </test-case>
-    <test-case start="1411446731473" stop="1411446731473" status="passed">
-      <name>ExpectedException</name>
-    </test-case>
-    <test-case start="1411446731473" stop="1411446731473" status="passed">
-      <name>ExpectedExceptionWithNoExceptionMessage</name>
-    </test-case>
-    <test-case start="1411446731473" stop="1411446731473" status="failed">
+    <test-case start="1412776229260" stop="1412776229270" status="failed">
       <name>UnexpectedException</name>
+      <description>Test Owner: Owner2</description>
       <failure>
         <message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 
 System.Exception: Exception of type 'System.Exception' was thrown.</message>
-        <stack-trace>    at SampleTestingProject.UnitTest1.UnexpectedException() in c:\SampleTRXParsing\SampleTestingProject\UnitTest1.cs:line 71
+        <stack-trace>    at SampleTestingProject.UnitTest1.UnexpectedException() in C:\Documents and Settings\chen\MSTestAllureAdapter\SampleTestingProject\UnitTest1.cs:line 65
 </stack-trace>
       </failure>
+      <labels>
+        <label name="Owner" value="Owner2" />
+      </labels>
+    </test-case>
+    <test-case start="1412776229240" stop="1412776229250" status="passed">
+      <name>ExpectedExceptionWithNoExceptionMessage</name>
+      <description>Test Owner: Owner2</description>
+      <labels>
+        <label name="Owner" value="Owner2" />
+      </labels>
+    </test-case>
+    <test-case start="1412776229190" stop="1412776229210" status="failed">
+      <name>SimpleFailingTest</name>
+      <failure>
+        <message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</message>
+        <stack-trace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in C:\Documents and Settings\chen\MSTestAllureAdapter\SampleTestingProject\UnitTest1.cs:line 43
+</stack-trace>
+      </failure>
+    </test-case>
+    <test-case start="1412776229170" stop="1412776229180" status="passed">
+      <name>Test_Without_Category</name>
+    </test-case>
+    <test-case start="1412776229220" stop="1412776229230" status="passed">
+      <name>ExpectedException</name>
     </test-case>
   </test-cases>
 </test-suite>
