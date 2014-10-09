@@ -41,7 +41,7 @@ namespace MSTestAllureAdapter
              
             // this will return the flat list of the tests with the inner tests.
             // here a test 'parent' that holds other tests will be discarded.
-            result = result.EnumerateTestResults().ToArray();
+            result = result.EnumerateTestResults();
 
             return result;
         }
