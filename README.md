@@ -3,7 +3,9 @@ MSTestAllureAdapter
 
 [![Build Status](https://api.travis-ci.org/someuser77/MSTestAllureAdapter.svg?branch=master)](https://travis-ci.org/someuser77/MSTestAllureAdapter)
 
-**MSTestAllureAdapter** allows you convert an MSTest TRX file to the XMLs from which an Allure report can be generated.
+**MSTestAllureAdapter** allows you convert an MSTest trx file to the XMLs from which an Allure report can be generated.
+
+Because MSTest does not have an extension or hook mechanism this adapter cannot run as part of MSTest but instead it converts the resulting trx file to the xml format expected by allure.
 
 It is a .NET/Mono based console application.
 
