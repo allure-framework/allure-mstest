@@ -104,7 +104,8 @@ namespace MSTestAllureAdapter
 
             MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories, innerTestResults);
 
-            if (outcome == TestOutcome.Error || outcome == TestOutcome.Failed)
+            bool containsInnerTestResults = unitTestResult.Element(ns + "InnerResults") == null;
+            if ((outcome == TestOutcome.Error || outcome == TestOutcome.Failed) && containsInnerTestResults)
             {
                 testResult.ErrorInfo = ParseErrorInfo(unitTestResult.Element(ns + "Output"));
             }
