@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -39,10 +39,6 @@
     <ProjectReference Include="..\MSTestAllureAdapter\MSTestAllureAdapter.csproj">
       <Project>{9CED0C38-BCEB-4BFC-9294-38455758A461}</Project>
       <Name>MSTestAllureAdapter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\allure-csharp-commons\AllureCSharpCommons\AllureCSharpCommons.csproj">
-      <Project>{0C358997-150B-4752-8B69-8B174167D730}</Project>
-      <Name>AllureCSharpCommons</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

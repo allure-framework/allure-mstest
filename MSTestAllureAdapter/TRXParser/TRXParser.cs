@@ -49,6 +49,9 @@ namespace MSTestAllureAdapter
 
         private ErrorInfo ParseErrorInfo(XElement errorInfoXmlElement)
         {
+            if (errorInfoXmlElement == null)
+                return new ErrorInfo("Error occured in parsing errorInfo");
+
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             xmlNamespaceManager.AddNamespace("prefix", TrxNamespace.NamespaceName);
 
