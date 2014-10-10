@@ -1,4 +1,0 @@
-
-[submodule "allure-csharp-commons"]
-	path = allure-csharp-commons
-	url = https://github.com/allure-framework/allure-csharp-commons.git
