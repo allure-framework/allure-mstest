@@ -29,15 +29,13 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        #if __MonoCS__
-        [Ignore("Currently mono has a bug with xsd validation.")]
-        #endif
         public void Generated_Files_Have_Correct_Schema()
         {
             AllureAdapter adapter = new AllureAdapter();
             adapter.GenerateTestResults("sample.trx", mTargetDir);
 
             XmlReaderSettings readerSettings = new XmlReaderSettings();
+            readerSettings.IgnoreWhitespace = true;
             readerSettings.Schemas.Add(null, Path.Combine("xsd", "allure.xsd"));
             readerSettings.ValidationType = ValidationType.Schema;
 
