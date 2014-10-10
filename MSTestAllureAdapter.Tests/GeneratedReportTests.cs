@@ -29,6 +29,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
+        [Ignore]
         public void Generated_Files_Have_Correct_Schema()
         {
             AllureAdapter adapter = new AllureAdapter();
