@@ -19,7 +19,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        public void Missing_Arguments_Return_Error()
+        public void MissingArgumentsReturnError()
         {
             int expected = 1;
             int actual = MainClass.Main(new string[0]);
@@ -28,7 +28,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        public void Missing_Trx_Returns_Error()
+        public void MissingTrxReturnsError()
         {
             int expected = 1;
             int actual = MainClass.Main(new string[]{ "non-existing-trx-file.trx", mTargetDir });
@@ -37,7 +37,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        public void Invalid_Trx_Returns_Error()
+        public void InvalidTrxReturnsError()
         {
             int expexted = 1;
 
@@ -47,7 +47,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        public void Valid_Trx_Returns_OK()
+        public void ValidTrxReturnsOK()
         {
             int expexted = 0;
             int actual = MainClass.Main(new string[]{ "sample.trx", mTargetDir });

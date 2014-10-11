@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1412776229170" stop="1412776229270" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+  <name xmlns="" />
   <test-cases xmlns="">
     <test-case start="1412776229260" stop="1412776229270" status="failed">
       <name>UnexpectedException</name>

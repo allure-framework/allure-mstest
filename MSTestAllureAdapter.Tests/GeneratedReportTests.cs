@@ -29,8 +29,7 @@ namespace MSTestAllureAdapter.Tests
         }
 
         [Test]
-        [Ignore]
-        public void Generated_Files_Have_Correct_Schema()
+        public void GeneratedFilesHaveCorrectSchema()
         {
             AllureAdapter adapter = new AllureAdapter();
             adapter.GenerateTestResults("sample.trx", mTargetDir);
