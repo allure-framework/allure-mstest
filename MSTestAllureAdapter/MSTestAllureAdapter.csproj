@@ -43,6 +43,9 @@
     <Compile Include="Utils\AllureResultsUtils.cs" />
     <Compile Include="AllureEvents\TestCaseFailureWithErrorInfoEvent.cs" />
     <Compile Include="AllureAdapter.cs" />
+    <Compile Include="TRXParser\XElementExtensions.cs" />
+    <Compile Include="TRXParser\ErrorInfo.cs" />
+    <Compile Include="Utils\MSTestResultUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

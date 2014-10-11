@@ -11,10 +11,6 @@ namespace MSTestAllureAdapter
     /// <summary>
     /// The base class for the Allure adapter.
     /// </summary>
-    /// <remarks>
-    /// The reason AllureAdapter and AllureAdapterBase are seperated is to 
-    /// express the TestStarted -> HandleTestResult -> TestSuitFinished template.
-    /// </remarks>
     public class AllureAdapter
     {
         static AllureAdapter()
@@ -94,13 +90,15 @@ namespace MSTestAllureAdapter
 
         private IDictionary<string, ICollection<MSTestResult>> CreateSuitToTestsMap(IEnumerable<MSTestResult> testResults )
         {
+            // use MultiValueDictionary from the Microsoft Experimental Collections when it becomes available.
+            // https://www.nuget.org/packages/Microsoft.Experimental.Collections/
             IDictionary<string, ICollection<MSTestResult>> testsMap = new Dictionary<string, ICollection<MSTestResult>>();
 
             foreach (MSTestResult testResult in testResults)
             {
                 IEnumerable<string> suits = testResult.Suites;
 
-                if (!testResult.Suites.Any())
+                if (!suits.Any())
                 {
                     suits = new string[]{ EMPTY_SUITE_CATEGORY_NAME };
                 }

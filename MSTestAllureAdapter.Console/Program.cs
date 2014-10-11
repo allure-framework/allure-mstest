@@ -67,11 +67,6 @@ namespace MSTestAllureAdapter.Console
                 Directory.CreateDirectory(outputPath);
             }
 
-            if (!outputPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
-            {
-                outputPath += Path.DirectorySeparatorChar;
-            }
-
             return true;
         }
 

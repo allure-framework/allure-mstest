@@ -10,6 +10,7 @@ namespace MSTestAllureAdapter
 
         public TestCaseFailureWithErrorInfoEvent(ErrorInfo errorInfo)
         {
+            // this assignment is safe because ErrorInfo is immutable
             mErrorInfo = errorInfo;
         }
 

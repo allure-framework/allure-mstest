@@ -26,10 +26,17 @@ namespace MSTestAllureAdapter
         Pending
     }
 
+    /// <summary>
+    /// Represents a test result extracted from the trx file.
+    /// </summary>
 	public class MSTestResult
 	{
         private string[] mSuits;
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="other">Source MSTestResult.</param>
         private MSTestResult(MSTestResult other)
             : this(other.Name, other.Outcome, other.Start, other.End, other.mSuits, other.InnerTests) 
         { 
@@ -37,6 +44,15 @@ namespace MSTestAllureAdapter
             ErrorInfo = other.ErrorInfo; // ErrorInfo is immutable
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MSTestAllureAdapter.MSTestResult"/> class.
+        /// </summary>
+        /// <param name="name">Name.</param>
+        /// <param name="outcome">Outcome.</param>
+        /// <param name="start">Start time.</param>
+        /// <param name="end">End time.</param>
+        /// <param name="suits">List of test suits this test belongs to.</param>
+        /// <param name="innerResults">List of inner test results this test might have.</param>
         public MSTestResult(string name, TestOutcome outcome, DateTime start, DateTime end, string[] suits, IEnumerable<MSTestResult> innerResults) 
 		{ 
             Name = name;
@@ -67,7 +83,6 @@ namespace MSTestAllureAdapter
                 }
             }
 
-            //InnerTests = innerTests.Count != 0 ? innerTests : Enumerable.Empty<MSTestResult>();
             InnerTests = results;
 		}
 

@@ -10,28 +10,26 @@ using System.Xml;
 namespace MSTestAllureAdapter
 {
     /// <summary>
-    /// MSTest TRX output parser.
+    /// MSTest TRX parser.
     /// </summary>
     public class TRXParser
     {
-        internal static readonly XNamespace TrxNamespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
+        // this namespace is required whenever using linq2xml on the trx.
+        // for aesthetic reasons the naming convention was violated.
+        private static readonly XNamespace ns = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010";
 
         /// <summary>
-        /// The category given to tests without any category.
+        /// Parses the test results from the supplied trx file.
         /// </summary>
-        public static readonly string DEFAULT_CATEGORY = "NO_CATEGORY";
-
+        /// <returns>The parsed test results.</returns>
+        /// <param name="filePath">File path to the trx file.</param>
         public IEnumerable<MSTestResult> GetTestResults(string filePath)
         {
             XDocument doc = XDocument.Load(filePath);
-            XNamespace ns = TrxNamespace;
 
-            string testRunName = doc.Document.Root.Attribute("name").Value;
-            string runUser = doc.Document.Root.Attribute("runUser").Value;
+            IEnumerable<XElement> unitTests = doc.Descendants(ns + "UnitTest");
 
-            IEnumerable<XElement> unitTests = doc.Descendants(ns + "UnitTest").ToList();           
-
-            IEnumerable<XElement> unitTestResults = doc.Descendants(ns + "UnitTestResult").ToList();
+            IEnumerable<XElement> unitTestResults = doc.Descendants(ns + "UnitTestResult");
 
             Func<XElement, string> outerKeySelector = _ => _.Element(ns + "Execution").Attribute("id").Value;
             Func<XElement, string> innerKeySelector = _ => _.Attribute("executionId").Value;
@@ -40,17 +38,16 @@ namespace MSTestAllureAdapter
             IEnumerable<MSTestResult> result = unitTests.Join<XElement, XElement, string, MSTestResult>(unitTestResults, outerKeySelector, innerKeySelector, resultSelector);
              
             // this will return the flat list of the tests with the inner tests.
-            // here a test 'parent' that holds other tests will be discarded.
+            // here a test 'parent' that holds other tests will be discarded (such as the data driven tests).
             result = result.EnumerateTestResults();
 
             return result;
         }
 
-
         private ErrorInfo ParseErrorInfo(XElement errorInfoXmlElement)
         {
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
-            xmlNamespaceManager.AddNamespace("prefix", TrxNamespace.NamespaceName);
+            xmlNamespaceManager.AddNamespace("prefix", ns.NamespaceName);
 
             string message = null;
             XElement messageElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:Message", xmlNamespaceManager);
@@ -78,12 +75,11 @@ namespace MSTestAllureAdapter
 
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
         {
-            XNamespace ns = TrxNamespace;
-
             string testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
 
             string dataRowInfo = unitTestResult.GetSafeAttributeValue("dataRowInfo");
 
+            // in data driven tests this appends the input row number to the test name
             testName += dataRowInfo;
 
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
@@ -100,7 +96,7 @@ namespace MSTestAllureAdapter
                 categories = new string[]{ DEFAULT_CATEGORY };
             */
 
-            IEnumerable<MSTestResult> innerTestResults = ReadInnerTestResults(unitTest, unitTestResult);
+            IEnumerable<MSTestResult> innerTestResults = ParseInnerTestResults(unitTest, unitTestResult);
 
             MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories, innerTestResults);
 
@@ -115,15 +111,17 @@ namespace MSTestAllureAdapter
             return testResult;
         }
 
-        private IEnumerable<MSTestResult> ReadInnerTestResults(XElement unitTest, XElement unitTestResult)
+        private IEnumerable<MSTestResult> ParseInnerTestResults(XElement unitTest, XElement unitTestResult)
         {
-            XNamespace ns = TrxNamespace;
             IEnumerable<XElement> innerResultsElements = unitTestResult.Descendants(ns + "InnerResults");
 
             if (!innerResultsElements.Any())
                 return null;
 
-            // there can be only one.
+            // the schema for the trx states there can be multiple 'InnerResults' elements but
+            // until we see it we take the first.
+            // In the future if it will be required to handle multiple 'InnerResults' elements 
+            // one can wrap the comming loop in another loop that loops over them.
             XElement innerResultsElement = innerResultsElements.FirstOrDefault<XElement>();
 
             IList<MSTestResult> result = new List<MSTestResult>();
@@ -138,8 +136,6 @@ namespace MSTestAllureAdapter
 
         private string GetOwner(XElement unitTestElement)
         {
-            XNamespace ns = TrxNamespace;
-
             string owner = null;
 
             XElement ownerElement = unitTestElement.Descendants(ns + "Owner").FirstOrDefault();
@@ -152,93 +148,6 @@ namespace MSTestAllureAdapter
 
             return owner;
         }
-    }
-
-    internal static class XElementExtensions
-    {
-        public static string GetSafeValue(this XElement element, XName name)
-        {
-            string result = String.Empty;
-
-            element = element.Element(name);
-
-            if (element != null)
-            {
-                result = element.Value;
-            }
-
-            return result;
-        }
-
-        public static string GetSafeAttributeValue(this XElement element, XName descendantElement, XName attributeName)
-        {
-            string result = String.Empty;
-
-            element = element.Element(descendantElement);
-
-            if (element != null && element.Attribute(attributeName) != null)
-            {
-                result = element.Attribute(attributeName).Value;
-            }
-
-            return result;
-        }
-
-        public static string GetSafeAttributeValue(this XElement element, XName attributeName)
-        {
-            string result = String.Empty;
-
-            if (element != null && element.Attribute(attributeName) != null)
-            {
-                result = element.Attribute(attributeName).Value;
-            }
-
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// Represents an ErrorInfo element in the trx file.
-    /// </summary>
-    public class ErrorInfo
-    {
-
-        public ErrorInfo(string message)
-            : this(message, null) { }
-
-        public ErrorInfo(string message, string stackTrace)
-            : this(message, stackTrace, null) { }
-
-        public ErrorInfo(string message, string stackTrace, string stdOut)
-        {
-            Message = message;
-            StackTrace = stackTrace;
-            StdOut = stdOut;
-        }
-
-        /// <summary>
-        /// Gets or sets the message.
-        /// </summary>
-        /// <value>The message.</value>
-        public string Message { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the stack trace.
-        /// </summary>
-        /// <value>The stack trace.</value>
-        public string StackTrace { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the StdOut.
-        /// </summary>
-        /// <value>The StdOut.</value>
-        public string StdOut { get; private set; }
-
-        public override string ToString()
-        {
-            return string.Format("[ErrorInfo: Message={0}, StackTrace={1}, StdOut={2}]", Message, StackTrace, StdOut);
-        }
-
     }
 }
 
