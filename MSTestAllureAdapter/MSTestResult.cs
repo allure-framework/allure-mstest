@@ -42,6 +42,7 @@ namespace MSTestAllureAdapter
         { 
             Owner = other.Owner;
             ErrorInfo = other.ErrorInfo; // ErrorInfo is immutable
+            Description = other.Description;
         }
 
         /// <summary>
@@ -130,6 +131,8 @@ namespace MSTestAllureAdapter
         /// </summary>
         /// <value>The test owner.</value>
         public string Owner { get; set; }
+
+        public string Description { get; set; }
 
         public IEnumerable<MSTestResult> InnerTests { get; private set; }
 

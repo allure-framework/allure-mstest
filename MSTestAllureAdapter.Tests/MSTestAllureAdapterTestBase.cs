@@ -19,9 +19,9 @@ namespace MSTestAllureAdapter.Tests
                 new MSTestResult("ExpectedException", TestOutcome.Passed),
                 new MSTestResult("ExpectedExceptionWithNoExceptionMessage", TestOutcome.Passed),
                 new MSTestResult("UnexpectedException", TestOutcome.Failed),
-                new MSTestResult("CSVdataDrivenTest0", TestOutcome.Passed, "Category3"),
-                new MSTestResult("CSVdataDrivenTest1", TestOutcome.Passed, "Category3"),
-                new MSTestResult("CSVdataDrivenTest2", TestOutcome.Failed, "Category3")
+                new MSTestResult("CSVDataDrivenTest0", TestOutcome.Passed, "Category3"),
+                new MSTestResult("CSVDataDrivenTest1", TestOutcome.Passed, "Category3"),
+                new MSTestResult("CSVDataDrivenTest2", TestOutcome.Failed, "Category3")
             };
 
             ExpectedTestsResultsMap = CreateMap(testResults);
@@ -31,9 +31,9 @@ namespace MSTestAllureAdapter.Tests
             ExpectedTestsResultsMap["TestMethod3"].Owner = "Owner1";
             ExpectedTestsResultsMap["UnexpectedException"].Owner = "Owner2";
             ExpectedTestsResultsMap["ExpectedExceptionWithNoExceptionMessage"].Owner = "Owner2";
-            ExpectedTestsResultsMap["CSVdataDrivenTest0"].Owner = "Owner3";
-            ExpectedTestsResultsMap["CSVdataDrivenTest1"].Owner = "Owner3";
-            ExpectedTestsResultsMap["CSVdataDrivenTest2"].Owner = "Owner3";
+            ExpectedTestsResultsMap["CSVDataDrivenTest0"].Owner = "Owner3";
+            ExpectedTestsResultsMap["CSVDataDrivenTest1"].Owner = "Owner3";
+            ExpectedTestsResultsMap["CSVDataDrivenTest2"].Owner = "Owner3";
         }
 
         private IDictionary<string, MSTestResult> CreateMap(IEnumerable<MSTestResult> testResults)

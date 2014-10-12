@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1412776229400" stop="1412776229400" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1413095419448" stop="1413095419458" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <name xmlns="">Category3</name>
   <test-cases xmlns="">
-    <test-case start="1412776229400" stop="1412776229400" status="passed">
-      <name>CSVdataDrivenTest0</name>
-      <description>Test Owner: Owner3</description>
+    <test-case start="1413095419448" stop="1413095419448" status="passed">
+      <name>CSVDataDrivenTest0</name>
+      <description>Description of the CSVDataDrivenTest data driven test.
+Test Owner: Owner3</description>
       <labels>
         <label name="Owner" value="Owner3" />
       </labels>
     </test-case>
-    <test-case start="1412776229400" stop="1412776229400" status="passed">
-      <name>CSVdataDrivenTest1</name>
-      <description>Test Owner: Owner3</description>
+    <test-case start="1413095419448" stop="1413095419448" status="passed">
+      <name>CSVDataDrivenTest1</name>
+      <description>Description of the CSVDataDrivenTest data driven test.
+Test Owner: Owner3</description>
       <labels>
         <label name="Owner" value="Owner3" />
       </labels>
     </test-case>
-    <test-case start="1412776229400" stop="1412776229400" status="failed">
-      <name>CSVdataDrivenTest2</name>
-      <description>Test Owner: Owner3</description>
+    <test-case start="1413095419448" stop="1413095419458" status="failed">
+      <name>CSVDataDrivenTest2</name>
+      <description>Description of the CSVDataDrivenTest data driven test.
+Test Owner: Owner3</description>
       <failure>
-        <message>Test method SampleTestingProject.UnitTest1.CSVdataDrivenTest threw exception: 
+        <message>Test method SampleTestingProject.UnitTest1.CSVDataDrivenTest threw exception: 
 System.DivideByZeroException: Attempted to divide by zero.</message>
-        <stack-trace>    at SampleTestingProject.UnitTest1.CSVdataDrivenTest() in C:\Documents and Settings\chen\MSTestAllureAdapter\SampleTestingProject\UnitTest1.cs:line 87
+        <stack-trace>    at SampleTestingProject.UnitTest1.CSVDataDrivenTest() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 89
 </stack-trace>
       </failure>
       <labels>

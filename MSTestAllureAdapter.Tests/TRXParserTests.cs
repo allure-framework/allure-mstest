@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace MSTestAllureAdapter.Tests
 {
@@ -18,7 +19,7 @@ namespace MSTestAllureAdapter.Tests
 
             TRXParser parser = new TRXParser();
 
-            mTestResults = parser.GetTestResults("sample.trx").EnumerateTestResults();
+            mTestResults = parser.GetTestResults(Path.Combine("trx", "sample.trx")).EnumerateTestResults();
         }
 
         [Test]

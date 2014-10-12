@@ -41,7 +41,7 @@ namespace MSTestAllureAdapter.Tests
         {
             int expexted = 1;
 
-            int actual = MainClass.Main(new string[]{ "InvalidFile.trx", mTargetDir });
+            int actual = MainClass.Main(new string[]{ Path.Combine("trx", "InvalidFile.trx"), mTargetDir });
 
             Assert.AreEqual(expexted, actual);
         }
@@ -50,7 +50,7 @@ namespace MSTestAllureAdapter.Tests
         public void ValidTrxReturnsOK()
         {
             int expexted = 0;
-            int actual = MainClass.Main(new string[]{ "sample.trx", mTargetDir });
+            int actual = MainClass.Main(new string[]{ Path.Combine("trx", "sample.trx"), mTargetDir });
 
             Assert.AreEqual(expexted, actual);
         }

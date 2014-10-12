@@ -46,9 +46,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\MSTestAllureAdapter.Tests\sample.trx">
+    <None Include="..\MSTestAllureAdapter.Tests\trx\sample.trx">
       <Link>sample.trx</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>
