@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1412776228739" stop="1412776229139" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1413095418707" stop="1413095419118" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <name xmlns="">Category1</name>
   <test-cases xmlns="">
-    <test-case start="1412776228739" stop="1412776229129" status="passed">
+    <test-case start="1413095418707" stop="1413095419108" status="passed">
       <name>TestMethod1</name>
-      <description>Test Owner: Owner1</description>
+      <description>Description of the TestMethod1 UnitTest.
+Test Owner: Owner1</description>
       <labels>
         <label name="Owner" value="Owner1" />
       </labels>
     </test-case>
-    <test-case start="1412776229129" stop="1412776229139" status="passed">
+    <test-case start="1413095419108" stop="1413095419118" status="passed">
       <name>TestMethod2</name>
-      <description>Test Owner: Owner1</description>
+      <description>
+Test Owner: Owner1</description>
       <labels>
         <label name="Owner" value="Owner1" />
       </labels>

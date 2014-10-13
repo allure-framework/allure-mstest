@@ -137,7 +137,11 @@ namespace MSTestAllureAdapter
                 //
                 // https://github.com/allure-framework/allure-core/issues/394
 
-                testCase.Description = new description { type = descriptiontype.text, Value = "Test Owner: " + testResult.Owner };
+                string description = testResult.Description;
+                description += Environment.NewLine;
+                description += "Test Owner: " + testResult.Owner;
+
+                testCase.Description = new description(descriptiontype.text, description);
             }
 
             Allure.Lifecycle.Fire(testCase);

@@ -9,6 +9,7 @@ namespace SampleTestingProject
         [TestMethod]
         [TestCategory("Category1")]
         [Owner("Owner1")]
+        [Description("Description of the TestMethod1 UnitTest.")] 
         public void TestMethod1()
         {
             Assert.IsTrue(true);
@@ -78,7 +79,8 @@ namespace SampleTestingProject
         [TestCategory("Category3")]
         [Owner("Owner3")]
         [TestMethod]
-        public void CSVdataDrivenTest()
+        [Description("Description of the CSVDataDrivenTest data driven test.")]
+        public void CSVDataDrivenTest()
         {
             int a = Convert.ToInt32(TestContext.DataRow["Operator 1"]);
             int b = Convert.ToInt32(TestContext.DataRow["Operator 2"]);

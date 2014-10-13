@@ -108,6 +108,8 @@ namespace MSTestAllureAdapter
 
             testResult.Owner = GetOwner(unitTest);
 
+            testResult.Description = GetDescription(unitTest);
+
             return testResult;
         }
 
@@ -147,6 +149,20 @@ namespace MSTestAllureAdapter
             }
 
             return owner;
+        }
+
+        private string GetDescription(XElement unitTestElement)
+        {
+            string description = null;
+
+            XElement descriptionElement = unitTestElement.Element(ns + "Description");
+
+            if (descriptionElement != null)
+            {
+                description = descriptionElement.Value;
+            }
+
+            return description;
         }
     }
 }

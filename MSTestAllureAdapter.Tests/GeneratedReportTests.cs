@@ -32,7 +32,7 @@ namespace MSTestAllureAdapter.Tests
         public void GeneratedFilesHaveCorrectSchema()
         {
             AllureAdapter adapter = new AllureAdapter();
-            adapter.GenerateTestResults("sample.trx", mTargetDir);
+            adapter.GenerateTestResults(Path.Combine("trx", "sample.trx"), mTargetDir);
 
             XmlReaderSettings readerSettings = new XmlReaderSettings();
             readerSettings.IgnoreWhitespace = true;
@@ -61,7 +61,7 @@ namespace MSTestAllureAdapter.Tests
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
             AllureAdapter adapter = new AllureAdapter();
-            adapter.GenerateTestResults("sample.trx", mTargetDir);
+            adapter.GenerateTestResults(Path.Combine("trx", "sample.trx"), mTargetDir);
 
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             xmlNamespaceManager.AddNamespace("prefix", "urn:model.allure.qatools.yandex.ru");
