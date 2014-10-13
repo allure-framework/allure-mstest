@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -27,6 +27,12 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AllureCSharpCommons">
+      <HintPath>..\packages\AllureCSharpCommons.0.2.0\lib\net40\AllureCSharpCommons.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -48,18 +54,9 @@
     <Compile Include="Utils\MSTestResultUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="TRXParser\" />
-    <Folder Include="AllureEvents\" />
-    <Folder Include="Utils\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="packages.config" />
     <None Include="TRXParser\vstst\vstst.xsd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\allure-csharp-commons\AllureCSharpCommons\AllureCSharpCommons.csproj">
-      <Project>{0C358997-150B-4752-8B69-8B174167D730}</Project>
-      <Name>AllureCSharpCommons</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

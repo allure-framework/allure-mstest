@@ -39,3 +39,4 @@ MSTestAllureAdapter.Tests/bin
 MSTestAllureAdapter.Tests/obj
 SampleTestingProject/bin
 SampleTestingProject/obj
+/packages
