@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
-using System.Xml.XPath;
-using System.Xml;
 
 namespace MSTestAllureAdapter
 {
@@ -15,11 +7,9 @@ namespace MSTestAllureAdapter
     /// <remarks>>This class is immutable.</remarks>
     public class ErrorInfo
     {
-        public ErrorInfo(string message)
-            : this(message, null) { }
+        public ErrorInfo(string message) : this(message, null) { }
 
-        public ErrorInfo(string message, string stackTrace)
-            : this(message, stackTrace, null) { }
+        public ErrorInfo(string message, string stackTrace) : this(message, stackTrace, null) { }
 
         public ErrorInfo(string message, string stackTrace, string stdOut)
         {
@@ -50,6 +40,5 @@ namespace MSTestAllureAdapter
         {
             return string.Format("[ErrorInfo: Message={0}, StackTrace={1}, StdOut={2}]", Message, StackTrace, StdOut);
         }
-
     }
 }
