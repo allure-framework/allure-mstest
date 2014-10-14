@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,12 +34,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="TRXParser\TRXParser.cs" />
     <Compile Include="MSTestResult.cs" />
     <Compile Include="AllureEvents\TestCaseStartedWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestCaseFinishedWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestSuiteStartedWithTimeEvent.cs" />
     <Compile Include="AllureEvents\TestSuiteFinishedWithTimeEvent.cs" />
+    <Compile Include="TRXParser\vstst\vstst.cs">
+      <DependentUpon>vstst.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AllureResultsUtils.cs" />
     <Compile Include="AllureEvents\TestCaseFailureWithErrorInfoEvent.cs" />
     <Compile Include="AllureAdapter.cs" />
@@ -48,11 +52,7 @@
     <Compile Include="Utils\MSTestResultUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="TRXParser\" />
-    <Folder Include="AllureEvents\" />
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="TRXParser\vstst\vstst.xsd" />
   </ItemGroup>
