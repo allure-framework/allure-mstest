@@ -39,7 +39,7 @@ namespace MSTestAllureAdapter
              
             // this will return the flat list of the tests with the inner tests.
             // here a test 'parent' that holds other tests will be discarded (such as the data driven tests).
-            result = result.EnumerateTestResults();
+            // result = result.EnumerateTestResults();
 
             return result;
         }
