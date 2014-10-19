@@ -72,11 +72,11 @@ namespace MSTestAllureAdapter
 
                     foreach (MSTestResult testResult in testResultBySuit.Value)
                     {
-                        TestStarted(suitUid, testResult);
-                        
-                        HandleTestResult(testResult);
-
-                        TestFinished(testResult);
+                        if (testResult.InnerTests == null || testResult.InnerTests.Count() == 0)
+                            HandleAllureTestCaseResult(suitUid, testResult);
+                        else
+                            foreach (var msTestResult in testResult.InnerTests)
+                                HandleAllureTestCaseResult(suitUid, msTestResult);
                     }
 
                     TestSuitFinished(suitUid, last.End);
@@ -86,6 +86,15 @@ namespace MSTestAllureAdapter
             {
                 AllureConfig.ResultsPath = originalResultsPath;
             }
+        }
+
+        private void HandleAllureTestCaseResult(string suitUid, MSTestResult testResult)
+        {
+            TestStarted(suitUid, testResult);
+
+            HandleTestResult(testResult);
+
+            TestFinished(testResult);
         }
 
         private IDictionary<string, ICollection<MSTestResult>> CreateSuitToTestsMap(IEnumerable<MSTestResult> testResults )
