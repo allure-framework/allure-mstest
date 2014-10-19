@@ -12,7 +12,7 @@ namespace MSTestAllureAdapter
     /// <summary>
     /// MSTest TRX parser.
     /// </summary>
-    public class TRXParser
+    public class TRXParser : ITestResultProvider
     {
         // this namespace is required whenever using linq2xml on the trx.
         // for aesthetic reasons the naming convention was violated.

@@ -46,6 +46,7 @@
     <Compile Include="TRXParser\XElementExtensions.cs" />
     <Compile Include="TRXParser\ErrorInfo.cs" />
     <Compile Include="Utils\MSTestResultUtils.cs" />
+    <Compile Include="ITestResultProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

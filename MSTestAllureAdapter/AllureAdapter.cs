@@ -13,14 +13,30 @@ namespace MSTestAllureAdapter
     /// </summary>
     public class AllureAdapter
     {
+        private static readonly string EMPTY_SUITE_CATEGORY_NAME = "NO_CATEGORY";
+        
+        private ITestResultProvider mTestResultProvider;
+        
         static AllureAdapter()
         {
             AllureConfig.AllowEmptySuites = true;
         }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MSTestAllureAdapter.AllureAdapter"/> class
+        /// using the TRXParser as the ITestResultProvider.
+        /// </summary>
+        public AllureAdapter()
+            : this(new TRXParser()) { }
 
-        private TRXParser mTrxParser = new TRXParser();
-
-        private static readonly string EMPTY_SUITE_CATEGORY_NAME = "NO_CATEGORY";
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MSTestAllureAdapter.AllureAdapter"/> class.
+        /// </summary>
+        /// <param name="testResultProvider">Test result provider.</param>
+        public AllureAdapter(ITestResultProvider testResultProvider)
+        {
+            mTestResultProvider = testResultProvider;
+        }
 
         protected virtual void HandleTestResult(MSTestResult testResult)
         {
@@ -50,7 +66,7 @@ namespace MSTestAllureAdapter
 
             try
             {
-                IEnumerable<MSTestResult> testResults = mTrxParser.GetTestResults(trxFile);
+                IEnumerable<MSTestResult> testResults = mTestResultProvider.GetTestResults(trxFile);
 
                 IDictionary<string, ICollection<MSTestResult>> testsMap = CreateSuitToTestsMap(testResults);
 
