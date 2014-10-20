@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1413095419108" stop="1413095419138" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <name xmlns="">Category2</name>
   <test-cases xmlns="">

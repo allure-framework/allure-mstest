@@ -66,6 +66,8 @@ namespace MSTestAllureAdapter.Tests
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             xmlNamespaceManager.AddNamespace("prefix", "urn:model.allure.qatools.yandex.ru");
 
+            DiffConfiguration diffConfiguration = new DiffConfiguration(String.Empty, false, WhitespaceHandling.None, true);
+            
             FillCategoryToXmlMap("sample-output", expected);
             FillCategoryToXmlMap(mTargetDir, actual);
 
@@ -90,8 +92,8 @@ namespace MSTestAllureAdapter.Tests
                 XmlInput control = new XmlInput(expectedFileText);
                 XmlInput test = new XmlInput(actualFileText);
                 
-                XmlDiff xmlDiff = new XmlDiff(control, test);
-                
+                XmlDiff xmlDiff = new XmlDiff(control, test, diffConfiguration);
+                    
                 DiffResult diffResult = xmlDiff.Compare();
                 if (!diffResult.Identical)
                 {
