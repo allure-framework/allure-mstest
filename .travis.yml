@@ -10,7 +10,7 @@ before_install:
 install:
   - sudo add-apt-repository -y ppa:directhex/monoxide 
   - sudo apt-get update
-  - sudo apt-get install mono-devel mono-gmcs nunit-console4
+  - sudo apt-get install mono-devel mono-gmcs nunit-console
  
 script:
   - mozroots --import --sync
@@ -18,4 +18,4 @@ script:
   - mono --runtime=v4.0 ./nuget.exe restore allure-csharp-commons/AllureCSharpCommons.sln
   - mono --runtime=v4.0 ./nuget.exe restore
   - xbuild
-  - nunit-console4 ./MSTestAllureAdapter.Tests/bin/Debug/MSTestAllureAdapter.Tests.dll
+  - nunit-console ./MSTestAllureAdapter.Tests/bin/Debug/MSTestAllureAdapter.Tests.dll
