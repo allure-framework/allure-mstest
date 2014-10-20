@@ -18,4 +18,4 @@ script:
   - mono --runtime=v4.0 ./nuget.exe restore allure-csharp-commons/AllureCSharpCommons.sln
   - mono --runtime=v4.0 ./nuget.exe restore
   - xbuild
-  - nunit-console ./MSTestAllureAdapter.Tests/bin/Debug/MSTestAllureAdapter.Tests.dll
+  - nunit-console4 ./MSTestAllureAdapter.Tests/bin/Debug/MSTestAllureAdapter.Tests.dll
