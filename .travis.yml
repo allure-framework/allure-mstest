@@ -10,7 +10,7 @@ before_install:
 install:
   - sudo add-apt-repository -y ppa:directhex/monoxide 
   - sudo apt-get update
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
+  - sudo apt-get install mono-devel mono-gmcs nunit-console4
  
 script:
   - mozroots --import --sync
