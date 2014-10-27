@@ -16,6 +16,6 @@ script:
   - mozroots --import --sync
   - wget http://nuget.org/nuget.exe
   - mono --runtime=v4.0 ./nuget.exe restore allure-csharp-commons/AllureCSharpCommons.sln
-  - mono --runtime=v4.0 ./nuget.exe restore
-  - xbuild
+  - mono --runtime=v4.0 ./nuget.exe restore MSTestAllureAdapter.sln
+  - xbuild MSTestAllureAdapter.sln
   - nunit-console ./MSTestAllureAdapter.Tests/bin/Debug/MSTestAllureAdapter.Tests.dll
