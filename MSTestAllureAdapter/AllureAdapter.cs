@@ -137,9 +137,7 @@ namespace MSTestAllureAdapter
 
             if (testResult.Owner != null)
             {
-                label ownerLabel = new label();
-                ownerLabel.name = "Owner";
-                ownerLabel.value = testResult.Owner;
+                label ownerLabel = new label("Owner", testResult.Owner);
 
                 testCase.Labels = new label[]{ ownerLabel };
 
@@ -148,9 +146,7 @@ namespace MSTestAllureAdapter
                 //
                 // https://github.com/allure-framework/allure-core/issues/394
 
-                string description = testResult.Description;
-                description += Environment.NewLine;
-                description += "Test Owner: " + testResult.Owner;
+                string description = FormatDescription(testResult);
 
                 testCase.Description = new description(descriptiontype.text, description);
             }
@@ -176,6 +172,14 @@ namespace MSTestAllureAdapter
         protected virtual void TestSuitFinished(string uid, DateTime finished)
         {
             Allure.Lifecycle.Fire(new TestSuiteFinishedWithTimeEvent(uid, finished));
+        }
+        
+        private string FormatDescription(MSTestResult testResult)
+        {
+            string description = testResult.Description;
+            description += Environment.NewLine;
+            description += "Test Owner: " + testResult.Owner;
+            return description;
         }
     }
 }
