@@ -74,9 +74,9 @@ namespace MSTestAllureAdapter
                         }
                         else 
                         {
-                            foreach (MSTestResult msTestResult in testResult.InnerTests)
+                            foreach (MSTestResult innerTestResult in testResult.InnerTests)
                             {
-                                HandleAllureTestCaseResult(suitUid, msTestResult);
+                                HandleAllureTestCaseResult(suitUid, innerTestResult);
                             }
                         }
                     }
