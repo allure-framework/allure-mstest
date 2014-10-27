@@ -31,7 +31,7 @@ namespace MSTestAllureAdapter
     /// </summary>
 	public class MSTestResult
 	{
-        private string[] mSuits;
+        private IEnumerable<string> mSuits;
 
         /// <summary>
         /// Copy constructor.
@@ -54,22 +54,11 @@ namespace MSTestAllureAdapter
         /// <param name="end">End time.</param>
         /// <param name="suits">List of test suits this test belongs to.</param>
         /// <param name="innerResults">List of inner test results this test might have.</param>
-        public MSTestResult(string name, TestOutcome outcome, DateTime start, DateTime end, string[] suits, IEnumerable<MSTestResult> innerResults) 
+        public MSTestResult(string name, TestOutcome outcome, DateTime start, DateTime end, IEnumerable<string> suits, IEnumerable<MSTestResult> innerResults) 
 		{ 
             Name = name;
 
-            if (suits == null)
-            {
-                mSuits = new string[0];
-            }
-            else
-            {
-                // strings are immutable to no deep copy is needed.
-                string[] suiteNamesCopy = new string[suits.Length];
-                Array.Copy(suits, suiteNamesCopy, suits.Length);
-
-                mSuits = suiteNamesCopy;
-            }
+            mSuits = suits ?? Enumerable.Empty<string>();
 
             Outcome = outcome;
             Start = start;

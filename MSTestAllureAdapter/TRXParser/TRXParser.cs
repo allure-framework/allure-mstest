@@ -49,26 +49,19 @@ namespace MSTestAllureAdapter
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             xmlNamespaceManager.AddNamespace("prefix", ns.NamespaceName);
 
-            string message = null;
+            errorInfoXmlElement = errorInfoXmlElement.Element(ns + "Output");
+            
             XElement messageElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:Message", xmlNamespaceManager);
-            if (messageElement != null)
-            {
-                message = messageElement.Value;
-            }
+            
+            string message = (messageElement != null) ? messageElement.Value : null;
 
-            string stackTrace = null;
             XElement stackTraceElement = errorInfoXmlElement.XPathSelectElement("prefix:ErrorInfo/prefix:StackTrace", xmlNamespaceManager);
-            if (stackTraceElement != null)
-            {
-                stackTrace = stackTraceElement.Value;
-            }
+            
+            string stackTrace = (stackTraceElement != null) ? stackTraceElement.Value : null;
 
-            string stdOut = null;
             XElement stdOutElement = errorInfoXmlElement.XPathSelectElement("prefix:StdOut", xmlNamespaceManager);
-            if (stdOutElement != null)
-            {
-                stdOut = stdOutElement.Value;
-            }
+            
+            string stdOut = (stdOutElement != null) ? stdOutElement.Value : null;
 
             return new ErrorInfo(message, stackTrace, stdOut);
         }
@@ -84,9 +77,9 @@ namespace MSTestAllureAdapter
 
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
 
-            DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value).ToUniversalTime();
+            DateTime start = DateTime.Parse(unitTestResult.Attribute("startTime").Value);
 
-            DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value).ToUniversalTime();
+            DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
 
             string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
                                             select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
@@ -103,7 +96,7 @@ namespace MSTestAllureAdapter
             bool containsInnerTestResults = unitTestResult.Element(ns + "InnerResults") == null;
             if ((outcome == TestOutcome.Error || outcome == TestOutcome.Failed) && containsInnerTestResults)
             {
-                testResult.ErrorInfo = ParseErrorInfo(unitTestResult.Element(ns + "Output"));
+                testResult.ErrorInfo = ParseErrorInfo(unitTestResult);
             }
 
             testResult.Owner = GetOwner(unitTest);
