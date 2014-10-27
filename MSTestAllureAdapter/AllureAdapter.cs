@@ -55,16 +55,16 @@ namespace MSTestAllureAdapter
                     string suitUid = Guid.NewGuid().ToString();
                     string suitName = testResultBySuit.Key;
                     ICollection<MSTestResult> tests = testResultBySuit.Value;
-                    
-                    MSTestResult first = tests.Aggregate((a, b) => a.Start < b.Start ? a : b);
-                    MSTestResult last = tests.Aggregate((a, b) => a.End > b.End ? a : b);
-
+                        
+                    DateTime start = tests.Min(x => x.Start);
+                    DateTime end = tests.Max(x => x.End);
+                        
                     if (suitName == EMPTY_SUITE_CATEGORY_NAME)
                     {
                         suitName = null;
                     }
 
-                    TestSuitStarted(suitUid, suitName, first.Start);
+                    TestSuitStarted(suitUid, suitName, start);
 
                     foreach (MSTestResult testResult in testResultBySuit.Value)
                     {
@@ -81,7 +81,7 @@ namespace MSTestAllureAdapter
                         }
                     }
 
-                    TestSuitFinished(suitUid, last.End);
+                    TestSuitFinished(suitUid, end);
                 }
             }
             finally
