@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1413095419308" stop="1413095419499" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1414417455549" stop="1414417455759" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
   <name xmlns="">Category3</name>
   <test-cases xmlns="">
-    <test-case start="1413095419448" stop="1413095419448" status="passed">
+    <test-case start="1414417455719" stop="1414417455719" status="passed">
       <name>CSVDataDrivenTest0</name>
       <description>Description of the CSVDataDrivenTest data driven test.
 Test Owner: Owner3</description>
@@ -10,7 +10,7 @@ Test Owner: Owner3</description>
         <label name="Owner" value="Owner3" />
       </labels>
     </test-case>
-    <test-case start="1413095419448" stop="1413095419448" status="passed">
+    <test-case start="1414417455719" stop="1414417455719" status="passed">
       <name>CSVDataDrivenTest1</name>
       <description>Description of the CSVDataDrivenTest data driven test.
 Test Owner: Owner3</description>
@@ -18,14 +18,14 @@ Test Owner: Owner3</description>
         <label name="Owner" value="Owner3" />
       </labels>
     </test-case>
-    <test-case start="1413095419448" stop="1413095419458" status="failed">
+    <test-case start="1414417455719" stop="1414417455719" status="failed">
       <name>CSVDataDrivenTest2</name>
       <description>Description of the CSVDataDrivenTest data driven test.
 Test Owner: Owner3</description>
       <failure>
         <message>Test method SampleTestingProject.UnitTest1.CSVDataDrivenTest threw exception: 
 System.DivideByZeroException: Attempted to divide by zero.</message>
-        <stack-trace>    at SampleTestingProject.UnitTest1.CSVDataDrivenTest() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 89
+        <stack-trace>    at SampleTestingProject.UnitTest1.CSVDataDrivenTest() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 119
 </stack-trace>
       </failure>
       <labels>

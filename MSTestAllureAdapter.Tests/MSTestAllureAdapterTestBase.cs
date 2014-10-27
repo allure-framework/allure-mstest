@@ -21,7 +21,10 @@ namespace MSTestAllureAdapter.Tests
                 new MSTestResult("UnexpectedException", TestOutcome.Failed),
                 new MSTestResult("CSVDataDrivenTest0", TestOutcome.Passed, "Category3"),
                 new MSTestResult("CSVDataDrivenTest1", TestOutcome.Passed, "Category3"),
-                new MSTestResult("CSVDataDrivenTest2", TestOutcome.Failed, "Category3")
+                new MSTestResult("CSVDataDrivenTest2", TestOutcome.Failed, "Category3"),
+                new MSTestResult("TestMethod_With_Only_Missing_Result_File", TestOutcome.Passed),
+                new MSTestResult("TestMethod_With_One_Missing_And_One_present_Result_File", TestOutcome.Passed),
+                new MSTestResult("TestMethod_With_Multiple_Result_Files", TestOutcome.Passed)
             };
 
             ExpectedTestsResultsMap = CreateMap(testResults);
