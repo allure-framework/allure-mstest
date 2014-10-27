@@ -14,7 +14,9 @@ namespace MSTestAllureAdapter.Tests
     public class GeneratedReportTests
     {
         string mTargetDir = "results";
-
+        
+        string mValidTrxFile = Path.Combine("trx", "sample.trx");
+        
         private void DeleteTargetDir()
         {
             if (Directory.Exists(mTargetDir))
@@ -31,9 +33,8 @@ namespace MSTestAllureAdapter.Tests
         [Test]
         public void GeneratedFilesHaveCorrectSchema()
         {
-            AllureAdapter adapter = new AllureAdapter();
-            adapter.GenerateTestResults(Path.Combine("trx", "sample.trx"), mTargetDir);
-
+            RunReport(mValidTrxFile);
+            
             XmlReaderSettings readerSettings = new XmlReaderSettings();
             readerSettings.IgnoreWhitespace = true;
             readerSettings.Schemas.Add(null, Path.Combine("xsd", "allure.xsd"));
@@ -60,9 +61,8 @@ namespace MSTestAllureAdapter.Tests
             Dictionary<string, string> expected = new Dictionary<string, string>();
             Dictionary<string, string> actual = new Dictionary<string, string>();
 
-            AllureAdapter adapter = new AllureAdapter();
-            adapter.GenerateTestResults(Path.Combine("trx", "sample.trx"), mTargetDir);
-
+            RunReport(mValidTrxFile);
+            
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             xmlNamespaceManager.AddNamespace("prefix", "urn:model.allure.qatools.yandex.ru");
 
@@ -130,6 +130,17 @@ namespace MSTestAllureAdapter.Tests
                 
                 map[category] = file;
             }
+        }
+        
+        private void RunReport(string trxPath)
+        {
+            AllureAdapter adapter = new AllureAdapter();
+            
+            ITestResultProvider testResultsProvider = new TRXParser();
+            
+            IEnumerable<MSTestResult> testResults = testResultsProvider.GetTestResults(trxPath);
+
+            adapter.GenerateTestResults(testResults, mTargetDir);
         }
     }
 }

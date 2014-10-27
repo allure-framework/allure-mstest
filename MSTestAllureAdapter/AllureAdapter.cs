@@ -15,27 +15,9 @@ namespace MSTestAllureAdapter
     {
         private static readonly string EMPTY_SUITE_CATEGORY_NAME = "NO_CATEGORY";
         
-        private ITestResultProvider mTestResultProvider;
-        
         static AllureAdapter()
         {
             AllureConfig.AllowEmptySuites = true;
-        }
-        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MSTestAllureAdapter.AllureAdapter"/> class
-        /// using the TRXParser as the ITestResultProvider.
-        /// </summary>
-        public AllureAdapter()
-            : this(new TRXParser()) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MSTestAllureAdapter.AllureAdapter"/> class.
-        /// </summary>
-        /// <param name="testResultProvider">Test result provider.</param>
-        public AllureAdapter(ITestResultProvider testResultProvider)
-        {
-            mTestResultProvider = testResultProvider;
         }
 
         protected virtual void HandleTestResult(MSTestResult testResult)
@@ -53,7 +35,7 @@ namespace MSTestAllureAdapter
         /// </summary>
         /// <param name="trxFile">Trx file.</param>
         /// <param name="resultsPath">Results path where the files shuold be saved.</param>
-        public void GenerateTestResults(string trxFile, string resultsPath)
+        public void GenerateTestResults(IEnumerable<MSTestResult> testResults, string resultsPath)
         {
             string originalResultsPath = AllureConfig.ResultsPath;
 
@@ -66,8 +48,6 @@ namespace MSTestAllureAdapter
 
             try
             {
-                IEnumerable<MSTestResult> testResults = mTestResultProvider.GetTestResults(trxFile);
-
                 IDictionary<string, ICollection<MSTestResult>> testsMap = CreateSuitToTestsMap(testResults);
 
                 foreach (KeyValuePair<string, ICollection<MSTestResult>> testResultBySuit in testsMap)

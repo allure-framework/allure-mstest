@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace MSTestAllureAdapter.Console
 {
@@ -25,12 +26,21 @@ namespace MSTestAllureAdapter.Console
                 System.Console.WriteLine("The supplied TRX file: '" + trxPath + "' was not found.");
                 return ERROR;
             }
-
+            
+            ITestResultProvider testResultProvider = new TRXParser();
+            
+            AllureAdapter adapter = new AllureAdapter();
+            
             try {
-                AllureAdapter adapter = new AllureAdapter();
+
                 System.Console.Write("Generating allure files... ");
-                adapter.GenerateTestResults(trxPath, resultsDir);
+                
+                IEnumerable<MSTestResult> testResults = testResultProvider.GetTestResults(trxPath);
+                
+                adapter.GenerateTestResults(testResults, resultsDir);
+                
                 System.Console.WriteLine("Done.");
+                
                 return OK;
             }
             catch (Exception e)
