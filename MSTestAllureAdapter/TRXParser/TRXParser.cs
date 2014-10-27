@@ -66,14 +66,35 @@ namespace MSTestAllureAdapter
             return new ErrorInfo(message, stackTrace, stdOut);
         }
 
+        private class UnitTestData
+        {
+            public string Name { get; set; }
+            public string Owner { get; set; }
+            public string Description { get; set; }
+            public IEnumerable<string> Suits { get; set; }
+             
+        }
+        
         private MSTestResult CreateMSTestResult(XElement unitTest, XElement unitTestResult)
         {
-            string testName = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
-
+            UnitTestData unitTestData = new UnitTestData();
+            unitTestData.Name = unitTest.GetSafeAttributeValue(ns + "TestMethod", "name");
+            unitTestData.Owner = GetOwner(unitTest);
+            unitTestData.Description = GetDescription(unitTest);
+            unitTestData.Suits = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
+                select testCategory.GetSafeAttributeValue("TestCategory")).ToList<string>();
+            
+            return CreateMSTestResultInternal(unitTestData, unitTestResult);
+        }
+        
+        private MSTestResult CreateMSTestResultInternal(UnitTestData unitTestData, XElement unitTestResult)
+        {
             string dataRowInfo = unitTestResult.GetSafeAttributeValue("dataRowInfo");
 
             // in data driven tests this appends the input row number to the test name
-            testName += dataRowInfo;
+            string unitTestName = unitTestData.Name;
+            
+            unitTestName += dataRowInfo;
 
             TestOutcome outcome = (TestOutcome)Enum.Parse(typeof(TestOutcome), unitTestResult.Attribute("outcome").Value);
 
@@ -81,17 +102,14 @@ namespace MSTestAllureAdapter
 
             DateTime end = DateTime.Parse(unitTestResult.Attribute("endTime").Value);
 
-            string[] categories = (from testCategory in unitTest.Descendants(ns + "TestCategoryItem")
-                                            select testCategory.GetSafeAttributeValue("TestCategory")).ToArray<string>();
-                
             /*
             if (categories.Length == 0)
                 categories = new string[]{ DEFAULT_CATEGORY };
             */
 
-            IEnumerable<MSTestResult> innerTestResults = ParseInnerTestResults(unitTest, unitTestResult);
+            IEnumerable<MSTestResult> innerTestResults = ParseInnerTestResults(unitTestData, unitTestResult);
 
-            MSTestResult testResult = new MSTestResult(testName, outcome, start, end, categories, innerTestResults);
+            MSTestResult testResult = new MSTestResult(unitTestName, outcome, start, end, unitTestData.Suits, innerTestResults);
 
             bool containsInnerTestResults = unitTestResult.Element(ns + "InnerResults") == null;
             if ((outcome == TestOutcome.Error || outcome == TestOutcome.Failed) && containsInnerTestResults)
@@ -99,14 +117,14 @@ namespace MSTestAllureAdapter
                 testResult.ErrorInfo = ParseErrorInfo(unitTestResult);
             }
 
-            testResult.Owner = GetOwner(unitTest);
+            testResult.Owner = unitTestData.Owner;
 
-            testResult.Description = GetDescription(unitTest);
-
+            testResult.Description = unitTestData.Description;
+            
             return testResult;
         }
 
-        private IEnumerable<MSTestResult> ParseInnerTestResults(XElement unitTest, XElement unitTestResult)
+        private IEnumerable<MSTestResult> ParseInnerTestResults(UnitTestData unitTestData, XElement unitTestResult)
         {
             IEnumerable<XElement> innerResultsElements = unitTestResult.Descendants(ns + "InnerResults");
 
@@ -123,7 +141,7 @@ namespace MSTestAllureAdapter
 
             foreach (XElement innerUnitTestResult in innerResultsElement.Descendants(ns + "UnitTestResult"))
             {
-                result.Add(CreateMSTestResult(unitTest, innerUnitTestResult));
+                    result.Add(CreateMSTestResultInternal(unitTestData, innerUnitTestResult));
             }
 
             return result;
