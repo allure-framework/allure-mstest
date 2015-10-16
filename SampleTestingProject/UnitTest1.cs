@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace SampleTestingProject
 {
@@ -29,6 +30,36 @@ namespace SampleTestingProject
         [Owner("Owner1")]
         public void TestMethod3()
         {
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void TestMethod_With_One_Missing_And_One_present_Result_File()
+        {
+            File.WriteAllText("file.xxx", "file.xxx contents.");
+            TestContext.AddResultFile("file.xxx");
+
+            TestContext.AddResultFile("missing.zzz");
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void TestMethod_With_Only_Missing_Result_File()
+        {
+            TestContext.AddResultFile("missing.zzz");
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void TestMethod_With_Multiple_Result_Files()
+        {
+            File.WriteAllText("file.xxx", "file.xxx contents.");
+            TestContext.AddResultFile("file.xxx");
+
+            File.WriteAllText("file.yyy", "file.yyy contents.");
+            TestContext.AddResultFile("file.yyy");
+
+            TestContext.AddResultFile("missing.zzz");
             Assert.IsTrue(true);
         }
 
@@ -66,11 +97,10 @@ namespace SampleTestingProject
             throw new Exception();
         }
 
-        private TestContext testContextInstance;
         public TestContext TestContext
         {
-            get { return testContextInstance; }
-            set { testContextInstance = value; }
+            get; 
+            set;
         }
 
         //[DataSource("Microsoft.Visualstudio.TestTools.DataSource.CSV", "|DataDirectory|\\UserData.csv", "UserData#csv", Microsoft.VisualStudio.TestTools.UnitTesting.DataAccessMethod.Sequential)]

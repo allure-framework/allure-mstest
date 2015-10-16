@@ -1,42 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1413095419148" stop="1413095419298" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru">
-  <name xmlns="" />
-  <test-cases xmlns="">
-    <test-case start="1413095419288" stop="1413095419298" status="failed">
-      <name>UnexpectedException</name>
-      <description>
-Test Owner: Owner2</description>
-      <failure>
-        <message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 
-System.Exception: Exception of type 'System.Exception' was thrown.</message>
-        <stack-trace>    at SampleTestingProject.UnitTest1.UnexpectedException() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 66
-</stack-trace>
-      </failure>
-      <labels>
-        <label name="Owner" value="Owner2" />
-      </labels>
-    </test-case>
-    <test-case start="1413095419208" stop="1413095419278" status="passed">
-      <name>ExpectedExceptionWithNoExceptionMessage</name>
-      <description>
-Test Owner: Owner2</description>
-      <labels>
-        <label name="Owner" value="Owner2" />
-      </labels>
-    </test-case>
-    <test-case start="1413095419158" stop="1413095419188" status="failed">
-      <name>SimpleFailingTest</name>
-      <failure>
-        <message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</message>
-        <stack-trace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 44
-</stack-trace>
-      </failure>
-    </test-case>
-    <test-case start="1413095419148" stop="1413095419158" status="passed">
-      <name>Test_Without_Category</name>
-    </test-case>
-    <test-case start="1413095419188" stop="1413095419198" status="passed">
-      <name>ExpectedException</name>
-    </test-case>
-  </test-cases>
-</test-suite>
+﻿<?xml version="1.0" encoding="utf-8"?><test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" start="1414417455408" stop="1414417455829" version="1.4.0" xmlns="urn:model.allure.qatools.yandex.ru"><name xmlns="" /><test-cases xmlns=""><test-case start="1414417455529" stop="1414417455549" status="failed"><name>UnexpectedException</name><description>
+Test Owner: Owner2</description><failure><message>Test method SampleTestingProject.UnitTest1.UnexpectedException threw exception: 
+System.Exception: Exception of type 'System.Exception' was thrown.</message><stack-trace>    at SampleTestingProject.UnitTest1.UnexpectedException() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 97
+</stack-trace></failure><labels><label name="Owner" value="Owner2" /></labels></test-case><test-case start="1414417455508" stop="1414417455508" status="passed"><name>ExpectedExceptionWithNoExceptionMessage</name><description>
+Test Owner: Owner2</description><labels><label name="Owner" value="Owner2" /></labels></test-case><test-case start="1414417455488" stop="1414417455498" status="passed"><name>ExpectedException</name></test-case><test-case start="1414417455458" stop="1414417455478" status="failed"><name>SimpleFailingTest</name><failure><message>Assert.AreEqual failed. Expected:&lt;1&gt;. Actual:&lt;2&gt;. The calculation failed.</message><stack-trace>   at SampleTestingProject.UnitTest1.SimpleFailingTest() in C:\Documents and Settings\chen\allure-mstest-adapter\SampleTestingProject\UnitTest1.cs:line 75
+</stack-trace></failure></test-case><test-case start="1414417455799" stop="1414417455829" status="passed"><name>TestMethod_With_Only_Missing_Result_File</name></test-case><test-case start="1414417455448" stop="1414417455448" status="passed"><name>Test_Without_Category</name></test-case><test-case start="1414417455779" stop="1414417455789" status="passed"><name>TestMethod_With_One_Missing_And_One_present_Result_File</name></test-case><test-case start="1414417455408" stop="1414417455438" status="passed"><name>TestMethod_With_Multiple_Result_Files</name></test-case></test-cases></test-suite>
