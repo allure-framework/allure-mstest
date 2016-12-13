@@ -19,7 +19,7 @@ namespace MSTestAllureAdapter.Tests
 
             TRXParser parser = new TRXParser();
 
-            mTestResults = parser.GetTestResults(Path.Combine("trx", "sample.trx")).EnumerateTestResults();
+            mTestResults = parser.GetTestResults(Path.Combine("MSTestAllureAdapter.Tests\\trx", "sample.trx")).EnumerateTestResults();
         }
 
         [Test]

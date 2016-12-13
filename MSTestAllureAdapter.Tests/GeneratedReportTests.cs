@@ -15,7 +15,7 @@ namespace MSTestAllureAdapter.Tests
     {
         string mTargetDir = "results";
         
-        string mValidTrxFile = Path.Combine("trx", "sample.trx");
+        string mValidTrxFile = Path.Combine("MSTestAllureAdapter.Tests\\trx", "sample.trx");
         
         private void DeleteTargetDir()
         {
@@ -37,7 +37,7 @@ namespace MSTestAllureAdapter.Tests
             
             XmlReaderSettings readerSettings = new XmlReaderSettings();
             readerSettings.IgnoreWhitespace = true;
-            readerSettings.Schemas.Add(null, Path.Combine("xsd", "allure.xsd"));
+            readerSettings.Schemas.Add(null, Path.Combine("MSTestAllureAdapter.Tests\\xsd", "allure.xsd"));
             readerSettings.ValidationType = ValidationType.Schema;
 
             string[] files = Directory.GetFiles(mTargetDir, "*.xml");
@@ -68,7 +68,7 @@ namespace MSTestAllureAdapter.Tests
 
             DiffConfiguration diffConfiguration = new DiffConfiguration(String.Empty, false, WhitespaceHandling.None, true);
             
-            FillCategoryToXmlMap("sample-output", expected);
+            FillCategoryToXmlMap("MSTestAllureAdapter.Tests\\sample-output", expected);
             FillCategoryToXmlMap(mTargetDir, actual);
 
             if (expected.Keys.Count != actual.Keys.Count)

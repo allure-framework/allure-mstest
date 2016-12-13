@@ -59,7 +59,7 @@ namespace MSTestAllureAdapter.Console
         /// <returns><c>true</c>, if command line options were parsed, <c>false</c> otherwise.</returns>
         /// <param name="args">The command line arguments.</param>
         /// <param name="trxPath">Trx path.</param>
-        /// <param name="reportPath">Report path.</param>
+        /// <param name="outputPath">Report path.</param>
         private static bool ParseCommandLineOptions(string[] args, out string trxPath, out string outputPath)
         {
             outputPath = null;
@@ -70,7 +70,7 @@ namespace MSTestAllureAdapter.Console
 
             trxPath = args[0];
 
-            outputPath = args.Length > 2 ? args[1] : DEFAULT_RESULT_DIR;
+            outputPath = args.Length > 1 ? args[1] : DEFAULT_RESULT_DIR;
 
             if (!Directory.Exists(outputPath))
             {
@@ -96,7 +96,7 @@ namespace MSTestAllureAdapter.Console
 
             help += "<TRX file> " + targetDirDisplayName;
             help += Environment.NewLine;
-            help += "If '" + targetDirDisplayName + "' is missing the reslts are saved in the current directory in a folder named '" + DEFAULT_RESULT_DIR  + "'.";
+            help += "If '" + targetDirDisplayName + "' is missing the results are saved in the current directory in a folder named '" + DEFAULT_RESULT_DIR  + "'.";
 
             System.Console.WriteLine(help);
         }
